@@ -43,7 +43,8 @@ Create my own user and post tables in database
 - create post page - where the user can upload info to post to a landmark page
 
 ### Mockups
-![pic1](https://github.com/malyesh/trec-client/assets/74512928/346fb558-0ca2-4bc8-9b59-d5c40f796b02)
+![pic1](https://github.com/malyesh/trec-client/assets/74512928/346fb558-0ca2-4bc8-9b59-d5c40f796b02) ![pic2](https://github.com/malyesh/trec-client/assets/74512928/aa1283d2-11d2-4537-8d63-2d6c4094c092)
+![pic4](https://github.com/malyesh/trec-client/assets/74512928/19cb1d80-09a7-4e2c-a33e-cab53a4291ce)
 
 ### Data
 
