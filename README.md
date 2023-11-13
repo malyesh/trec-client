@@ -28,7 +28,7 @@ Two kinds of users will use this application
 
 ### Tech Stack
 
-HTML/SCSS, React, Node, Express, Axios, MySQL, Knex
+HTML/SCSS, React, Node, Express, Axios, MySQL, Knex, react-select library
 
 ### APIs
 
@@ -80,9 +80,11 @@ Create a database with three tables -
 
 - get /countries => all countries from api
 - get /countries/:country/cities => cities from that country
-- get /countries/:country/cities/:city/landmarks => from database to get all the landmark options in that country, city
+- get /:country/:city/landmarks => from database to get all the landmark options in that country, city
 - get /landmarks/:landmark => all posts from that landmark
-- post /users/posts => post to a specific landmark
+- get /user => (nice to have) all info about the specific user for profile page
+- get /posts => (nice to have) page with all posts to scroll through
+- post /user/posts => post to a specific landmark
 
 ### Auth
 
@@ -106,4 +108,5 @@ I would like to have authorization implemented, as we have not learned it yet, I
 - star/favorite posts so that they can easily access at a later time on the user's page
 - patch /users/posts/:post => like a post
 - real upload image functionality rather than default image used for new posts
-- have a user profile page to view user information and favorited posts
+- have a user profile page to view user information and favorited post
+- have a section on homepage to just scroll through all posts
