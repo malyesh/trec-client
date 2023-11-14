@@ -1,5 +1,6 @@
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './HomePage.scss';
 
@@ -8,6 +9,9 @@ export default function HomePage() {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [allCities, setAllCities] = useState();
   const [selectedCity, setSelectedCity] = useState(null);
+
+  const navigate = useNavigate();
+  // const history = useHistory();
 
   const apiBody = process.env.REACT_APP_API_URL;
 
@@ -52,28 +56,37 @@ export default function HomePage() {
     // }
   }, [selectedCountry, apiBody]);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    navigate(`/${selectedCountry['value']}/${selectedCity['value']}`);
+  };
+
   if (!allCountries && !allCities) return <h1>Loading...</h1>;
 
   return (
     <div>
       <h1>Youre on the homepage</h1>
-      <Dropdown
-        options={allCountries}
-        setSelectedElement={setSelectedCountry}
-        value={selectedCountry}
-        name='country'
-        id='country'
-        type='country'
-      />
+      <form onSubmit={handleSubmit}>
+        <Dropdown
+          options={allCountries}
+          setSelectedElement={setSelectedCountry}
+          value={selectedCountry}
+          name='country'
+          id='country'
+          type='country'
+        />
 
-      <Dropdown
-        options={allCities}
-        setSelectedElement={setSelectedCity}
-        value={selectedCity}
-        name='city'
-        id='city'
-        type='city'
-      />
+        <Dropdown
+          options={allCities}
+          setSelectedElement={setSelectedCity}
+          value={selectedCity}
+          name='city'
+          id='city'
+          type='city'
+        />
+
+        <button type='submit'>lets goo</button>
+      </form>
     </div>
   );
 }

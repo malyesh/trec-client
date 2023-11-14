@@ -61,30 +61,34 @@ Create a database with three tables -
 | city | |
 | name | |
 
-| User |             |
-| ---- | ----------- |
-| id   | primary key |
-| name |             |
+| User     |             |
+| -------- | ----------- |
+| id       | primary key |
+| name     |             |
+| email    |             |
+| password |             |
 
-| Post          |              |
-| ------------- | ------------ |
-| id            | primary key  |
-| landmark_id   | foreign key  |
-| user_id       | foreign key  |
-| image url     |              |
-| title/comment |              |
-| rating        |              |
-| favorite      | boolean flag |
+| Post        |              |
+| ----------- | ------------ |
+| id          | primary key  |
+| landmark_id | foreign key  |
+| user_id     | foreign key  |
+| image url   |              |
+| caption     |              |
+| rating      |              |
+| favorite    | boolean flag |
 
 ### Endpoints
 
 - get /countries => all countries from api
 - get /countries/:country/cities => cities from that country
-- get /:country/:city/landmarks => from database to get all the landmark options in that country, city
+- get /landmarks/:country/:city/landmarks => from database to get all the landmark options in that country, city
 - get /landmarks/:landmark => all posts from that landmark
-- get /user => (nice to have) all info about the specific user for profile page
-- get /posts => (nice to have) page with all posts to scroll through
 - post /user/posts => post to a specific landmark
+- get /user => (nice to have) all info about the specific user for profile page
+- get /user/post => (nice to have) all the posts made by the user
+- put /post => (nice to have) user to favorite someone's post
+- get /post => (nice to have) all posts to scroll through
 
 ### Auth
 
