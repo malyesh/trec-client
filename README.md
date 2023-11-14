@@ -80,9 +80,13 @@ Create a database with three tables -
 
 - get /countries => all countries from api
 - get /countries/:country/cities => cities from that country
-- get /countries/:country/cities/:city/landmarks => from database to get all the landmark options in that country, city
+- get /landmarks/:country/:city/landmarks => from database to get all the landmark options in that country, city
 - get /landmarks/:landmark => all posts from that landmark
-- post /users/posts => post to a specific landmark
+- post /user/posts => post to a specific landmark
+- get /user => (nice to have) all info about the specific user for profile page
+- get /user/post => (nice to have) all the posts made by the user
+- put /post => (nice to have) user to favorite someone's post
+- get /post => (nice to have) all posts to scroll through
 
 ### Auth
 
