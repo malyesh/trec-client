@@ -1,0 +1,10 @@
+@use '../../styles/partials/globals' as *;
+
+.list {
+  &__title {
+  }
+  &__body {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,18 @@
+@use '../../styles/partials/globals' as *;
+
+.card {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45%;
+  &__title {
+  }
+  &__info {
+  }
+}
+
+a:visited {
+  color: black;
+}

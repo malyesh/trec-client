@@ -6,7 +6,10 @@ import './HomePage.scss';
 
 export default function HomePage() {
   const [allCountries, setAllCountries] = useState();
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState({
+    value: '',
+    label: '',
+  });
   const [allCities, setAllCities] = useState();
   const [selectedCity, setSelectedCity] = useState(null);
 
@@ -21,9 +24,9 @@ export default function HomePage() {
       // setAllCountries(response.data);
       setAllCountries(
         response.data.map((obj) => ({
-          value: obj['country'],
-          label: obj['country'],
-          cities: obj.cities,
+          value: obj,
+          label: obj,
+          // cities: obj.cities,
         }))
       );
     };
@@ -32,28 +35,24 @@ export default function HomePage() {
   }, [apiBody]);
 
   useEffect(() => {
-    // if (selectedCountry['value'].length > 4) {
-    if (selectedCountry) {
-      setAllCities(
-        selectedCountry['cities'].map((city) => ({
-          value: city,
-          label: city,
-        }))
-      );
+    try {
+      const getAllCities = async () => {
+        const response = await axios.get(
+          `${apiBody}/countries/${selectedCountry['value']}`
+        );
+        console.log(response.data);
+        setAllCities(
+          response.data.map((obj) => ({
+            value: obj,
+            label: obj,
+          }))
+        );
+      };
+      if (selectedCountry['value'] !== '') getAllCities();
+      console.log(selectedCountry);
+    } catch (error) {
+      console.log(error);
     }
-
-    // try {
-    //   const getAllCities = async () => {
-    //     const response = await axios.get(
-    //       `${apiBody}/countries/${selectedCountry['value']}`
-    //     );
-    //     setAllCities(response.data);
-    //   };
-    //   getAllCities();
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    // }
   }, [selectedCountry, apiBody]);
 
   const handleSubmit = async (event) => {
@@ -61,8 +60,7 @@ export default function HomePage() {
     navigate(`/${selectedCountry['value']}/${selectedCity['value']}`);
   };
 
-  if (!allCountries && !allCities) return <h1>Loading...</h1>;
-
+  if (!allCountries) return <h1>Loading...</h1>;
   return (
     <div>
       <h1>Youre on the homepage</h1>
@@ -76,14 +74,28 @@ export default function HomePage() {
           type='country'
         />
 
-        <Dropdown
+        <div className={` ${allCities ? 'show' : 'hide'}`}>
+          {allCities && (
+            <Dropdown
+              options={allCities}
+              setSelectedElement={setSelectedCity}
+              value={selectedCity}
+              name='city'
+              id='city'
+              type='city'
+            />
+          )}
+        </div>
+
+        {/* )} */}
+        {/* <Dropdown
           options={allCities}
           setSelectedElement={setSelectedCity}
           value={selectedCity}
           name='city'
           id='city'
           type='city'
-        />
+        /> */}
 
         <button type='submit'>lets goo</button>
       </form>

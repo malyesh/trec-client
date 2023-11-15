@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import './LandmarkListPage.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Landmark from '../../components/Landmark/Landmark';
 
 export default function LandmarkListPage() {
   const [landmarkList, setLandmarkList] = useState(null);
@@ -27,8 +28,21 @@ export default function LandmarkListPage() {
   if (!landmarkList) return <h1>Loading...</h1>;
 
   return (
-    <div>
-      <h1>{`${city}, ${country}`}</h1>
+    <div className='list'>
+      <h1 className='list__title'>{`${city}, ${country}`}</h1>
+
+      <main className='list__body'>
+        {landmarkList.map((landmark) => {
+          return (
+            <Landmark
+              key={landmark.id}
+              name={landmark.landmark_name}
+              country={landmark.country}
+              city={landmark.city}
+            />
+          );
+        })}
+      </main>
     </div>
   );
 }
