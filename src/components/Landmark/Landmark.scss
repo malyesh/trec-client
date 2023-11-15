@@ -1,18 +1,19 @@
 @use '../../styles/partials/globals' as *;
 
 .card {
-  color: black;
   text-decoration: none;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 45%;
+  width: 100%;
+  box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+  height: 100px;
+  border-radius: 10px;
+  justify-content: space-evenly;
+  padding: 1rem;
+  margin-bottom: 10px;
   &__title {
   }
   &__info {
   }
-}
-
-a:visited {
-  color: black;
 }

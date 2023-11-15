@@ -63,16 +63,21 @@ export default function HomePage() {
   if (!allCountries) return <h1>Loading...</h1>;
   return (
     <div>
-      <h1>Youre on the homepage</h1>
-      <form onSubmit={handleSubmit}>
-        <Dropdown
-          options={allCountries}
-          setSelectedElement={setSelectedCountry}
-          value={selectedCountry}
-          name='country'
-          id='country'
-          type='country'
-        />
+      <div className='header'>
+        <h1>TravelRec</h1>
+      </div>
+
+      <form className='form' onSubmit={handleSubmit}>
+        <div>
+          <Dropdown
+            options={allCountries}
+            setSelectedElement={setSelectedCountry}
+            value={selectedCountry}
+            name='country'
+            id='country'
+            type='country'
+          />
+        </div>
 
         <div className={` ${allCities ? 'show' : 'hide'}`}>
           {allCities && (
@@ -87,17 +92,9 @@ export default function HomePage() {
           )}
         </div>
 
-        {/* )} */}
-        {/* <Dropdown
-          options={allCities}
-          setSelectedElement={setSelectedCity}
-          value={selectedCity}
-          name='city'
-          id='city'
-          type='city'
-        /> */}
-
-        <button type='submit'>lets goo</button>
+        <button className='form__button' type='submit'>
+          lets goo
+        </button>
       </form>
     </div>
   );

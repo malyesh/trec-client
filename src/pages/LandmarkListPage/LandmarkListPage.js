@@ -29,7 +29,9 @@ export default function LandmarkListPage() {
 
   return (
     <div className='list'>
-      <h1 className='list__title'>{`${city}, ${country}`}</h1>
+      <div className='header'>
+        <h1 className='list__title'>{`${city}, ${country}`}</h1>
+      </div>
 
       <main className='list__body'>
         {landmarkList.map((landmark) => {

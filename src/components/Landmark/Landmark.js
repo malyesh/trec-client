@@ -4,7 +4,7 @@ import './Landmark.scss';
 export default function Landmark({ name, country, city }) {
   return (
     <Link to={`/${country}/${city}/${name}`} className='card'>
-      <h2 className='card__title'>{name}</h2>
+      <h3 className='card__title'>{name}</h3>
       <p className='card__info'>
         {city}, {country}
       </p>

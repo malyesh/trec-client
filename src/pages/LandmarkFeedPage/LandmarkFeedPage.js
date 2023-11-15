@@ -1,9 +1,14 @@
 import './LandmarkFeedPage.scss';
+import { useParams } from 'react-router-dom';
 
 export default function LandmarkFeedPage() {
+  const { landmark } = useParams();
+
   return (
     <div>
-      <h1>Youre on the LandmarkFeedPage</h1>
+      <div className='header'>
+        <h1>{landmark}</h1>
+      </div>
     </div>
   );
 }
