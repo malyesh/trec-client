@@ -8,8 +8,23 @@
   margin: 0;
   border: 0;
   padding: 0;
+  color: #0a210f;
 }
 
 html {
   font-size: 100%;
+}
+
+body,
+button {
+  //   background-color: rgb(235, 245, 223);
+  //   background-color: #d2fdff;
+  font-family: 'Metropolis', Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Metropolis', Arial, Helvetica, sans-serif;
+  color: #e77728;
 }
