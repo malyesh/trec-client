@@ -1,4 +1,5 @@
 import Dropdown from '../../components/Dropdown/Dropdown';
+import Map from '../../components/Map/Map';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -99,6 +100,8 @@ export default function HomePage() {
 
         <button type='submit'>lets goo</button>
       </form>
+
+      <Map />
     </div>
   );
 }
