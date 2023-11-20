@@ -8,27 +8,29 @@ import './Footer.scss';
 export default function Footer() {
   const navigate = useNavigate();
 
-  const handleHomeClick = () => {
-    navigate('/');
-  };
-
-  const handlePostClick = () => {
-    navigate('/post');
-  };
-
   return (
     <section className='footer__container'>
-      <h1 className='footer__item footer__item--logo' onClick={handleHomeClick}>
+      <h1
+        className='footer__item footer__item--logo'
+        onClick={() => {
+          navigate('/search');
+        }}
+      >
         TR
       </h1>
       <img
         className='footer__item footer__item--icon'
+        onClick={() => {
+          navigate('/search');
+        }}
         src={searchIcon}
         alt='search'
       />
       <img
         className='footer__item footer__item--icon'
-        onClick={handlePostClick}
+        onClick={() => {
+          navigate('/post');
+        }}
         src={cameraIcon}
         alt='camera'
       />
@@ -39,6 +41,9 @@ export default function Footer() {
       />
       <img
         className='footer__item footer__item--icon'
+        onClick={() => {
+          navigate('/profile');
+        }}
         src={userIcon}
         alt='ouline of person'
       />

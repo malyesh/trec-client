@@ -26,13 +26,13 @@ export default function SignupPage() {
     try {
       if (event.target.password.value === event.target.confirm_password.value) {
         let userInput = {
-          first_name: event.target.first_name.value,
-          last_name: event.target.last_name.value,
-          email: event.target.email.value,
-          password: event.target.password.value,
+          first_name: values.first_name,
+          last_name: values.last_name,
+          email: values.email,
+          password: values.password,
         };
 
-        const response = await axios.post(`${apiBody}/users/signup`, userInput);
+        const response = await axios.post(`${apiBody}/user/signup`, userInput);
 
         console.log(response.data);
 

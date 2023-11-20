@@ -16,6 +16,9 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  &__dropdown {
+    padding-bottom: 1rem;
+  }
   &__button {
     width: 100%;
     height: 36px;
@@ -24,4 +27,8 @@
     color: #0a210f;
     font-size: 1rem;
   }
+}
+
+.disabled {
+  background-color: #cad3c4;
 }

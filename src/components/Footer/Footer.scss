@@ -7,11 +7,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     width: 100%;
-    // background-color: #bad4aa;
-    // background-color: #ebf5df;
     border-top: 1px solid lightgray;
     background-color: white;
   }

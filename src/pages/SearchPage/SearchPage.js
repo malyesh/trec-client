@@ -2,31 +2,35 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './HomePage.scss';
+import './SearchPage.scss';
 
-export default function HomePage() {
+export default function SearchPage() {
   const [allCountries, setAllCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState({
     value: '',
     label: '',
+    id: '',
   });
   const [allCities, setAllCities] = useState();
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCity, setSelectedCity] = useState({
+    value: '',
+    label: '',
+    id: '',
+  });
+  const [disabled, setDisabled] = useState(true);
 
   const navigate = useNavigate();
-  // const history = useHistory();
 
   const apiBody = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const getAllCountries = async () => {
       const response = await axios.get(`${apiBody}/countries`);
-      // setAllCountries(response.data);
       setAllCountries(
         response.data.map((obj) => ({
-          value: obj,
-          label: obj,
-          // cities: obj.cities,
+          value: obj.country_name,
+          label: obj.country_name,
+          id: obj.id,
         }))
       );
     };
@@ -38,26 +42,39 @@ export default function HomePage() {
     try {
       const getAllCities = async () => {
         const response = await axios.get(
-          `${apiBody}/countries/${selectedCountry['value']}`
+          `${apiBody}/countries/${selectedCountry.id}`
         );
-        console.log(response.data);
         setAllCities(
           response.data.map((obj) => ({
-            value: obj,
-            label: obj,
+            value: obj.city_name,
+            label: obj.city_name,
+            id: obj.id,
           }))
         );
       };
-      if (selectedCountry['value'] !== '') getAllCities();
+      if (selectedCountry.id !== '') getAllCities();
       console.log(selectedCountry);
     } catch (error) {
       console.log(error);
     }
   }, [selectedCountry, apiBody]);
 
+  useEffect(() => {
+    if (selectedCity.id !== '' && selectedCountry.id !== '') {
+      setDisabled(false);
+    }
+  }, [selectedCity, selectedCountry]);
+
   const handleSubmit = async (event) => {
+    console.log(selectedCountry.id);
+    console.log(selectedCity.id);
     event.preventDefault();
-    navigate(`/${selectedCountry['value']}/${selectedCity['value']}`);
+    navigate(`/${selectedCountry.id}/${selectedCity.id}`, {
+      state: {
+        city: selectedCity,
+        country: selectedCountry,
+      },
+    });
   };
 
   if (!allCountries) return <h1>Loading...</h1>;
@@ -68,7 +85,7 @@ export default function HomePage() {
       </div>
 
       <form className='form' onSubmit={handleSubmit}>
-        <div>
+        <div className='form__dropdown'>
           <Dropdown
             options={allCountries}
             setSelectedElement={setSelectedCountry}
@@ -79,7 +96,7 @@ export default function HomePage() {
           />
         </div>
 
-        <div className={` ${allCities ? 'show' : 'hide'}`}>
+        <div className={`form__dropdown ${allCities ? 'show' : 'hide'}`}>
           {allCities && (
             <Dropdown
               options={allCities}
@@ -92,7 +109,11 @@ export default function HomePage() {
           )}
         </div>
 
-        <button className='form__button' type='submit'>
+        <button
+          className={`form__button ${disabled ? 'disabled' : ''}`}
+          type='submit'
+          disabled={disabled}
+        >
           lets goo
         </button>
       </form>
