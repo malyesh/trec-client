@@ -8,6 +8,7 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState({});
   const [allPosts, setAllPosts] = useState();
+  const [isImage, setIsImage] = useState(false);
 
   const apiBody = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -42,6 +43,14 @@ export default function ProfilePage() {
     getAllPosts();
   }, [apiBody, token, isLoading]);
 
+  useEffect(() => {
+    const checkImage = () => {
+      if (userInfo.picture === '') return setIsImage(false);
+      return setIsImage(true);
+    };
+    checkImage();
+  }, [userInfo.picture]);
+
   // const handleLogout = () => {
   //   setIsLoading(true);
   //   sessionStorage.removeItem('token');
@@ -60,7 +69,14 @@ export default function ProfilePage() {
   return (
     <>
       <div className='header'>
-        <h1>{userInfo.first_name}'s profile page</h1>
+        {isImage ? (
+          <img className='header__image' src={userInfo.picture} alt='profile' />
+        ) : (
+          <div className='header__image header__image--default'></div>
+        )}
+        <h1 className='header__name'>
+          {userInfo.first_name} {userInfo.last_name}
+        </h1>
       </div>
 
       {/* <div>

@@ -1,2 +1,55 @@
 @use '../../styles/partials/globals' as *;
 @use '../../styles/partials/colors' as *;
+
+.post {
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  &__picture {
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  &__footer {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    top: 419px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 2rem;
+  }
+  &__landmark {
+    font-weight: 600;
+    padding: 1rem;
+    text-transform: uppercase;
+  }
+  &__stars {
+    display: flex;
+    padding: 1rem;
+    &--item {
+      height: 1rem;
+    }
+  }
+  &__title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    text-align: left;
+    // flex-wrap: wrap;
+    padding-top: 0.5rem;
+  }
+  &__name {
+    // width: 30%;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  &__caption {
+    line-height: 1.5rem;
+    // width: 70%;
+  }
+}

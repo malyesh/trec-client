@@ -86,6 +86,9 @@ export default function SearchPage() {
 
       <form className='form' onSubmit={handleSubmit}>
         <div className='form__dropdown'>
+          <label className='form__label' for='country'>
+            Country
+          </label>
           <Dropdown
             options={allCountries}
             setSelectedElement={setSelectedCountry}
@@ -98,14 +101,19 @@ export default function SearchPage() {
 
         <div className={`form__dropdown ${allCities ? 'show' : 'hide'}`}>
           {allCities && (
-            <Dropdown
-              options={allCities}
-              setSelectedElement={setSelectedCity}
-              value={selectedCity}
-              name='city'
-              id='city'
-              type='city'
-            />
+            <>
+              <label className='form__label' for='city'>
+                City
+              </label>
+              <Dropdown
+                options={allCities}
+                setSelectedElement={setSelectedCity}
+                value={selectedCity}
+                name='city'
+                id='city'
+                type='city'
+              />
+            </>
           )}
         </div>
 

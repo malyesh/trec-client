@@ -1,5 +1,6 @@
-@use '../../styles/partials/globals';
-@use '../../styles/partials/fonts';
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
 
 .hide {
   display: none;
@@ -18,17 +19,18 @@
   padding: 1rem;
   &__dropdown {
     padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+  &__label {
+    padding-bottom: 4px;
   }
   &__button {
-    width: 100%;
-    height: 36px;
-    border-radius: 5px;
-    background-color: #bad4aa;
-    color: #0a210f;
-    font-size: 1rem;
+    @include button;
   }
 }
 
 .disabled {
-  background-color: #cad3c4;
+  @include disabled-button;
 }

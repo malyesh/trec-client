@@ -36,18 +36,22 @@ export default function LandmarkFeedPage() {
       </div>
 
       <div>
-        {posts.map((post) => {
-          return (
-            <Post
-              name={`${post.first_name} ${post.last_name}`}
-              key={post.id}
-              landmark={post.landmark_name}
-              caption={post.caption}
-              rating={post.rating}
-              picture={post.picture}
-            />
-          );
-        })}
+        {posts.length > 0 ? (
+          posts.map((post) => {
+            return (
+              <Post
+                name={`${post.first_name} ${post.last_name}`}
+                key={post.id}
+                landmark={post.landmark_name}
+                caption={post.caption}
+                rating={post.rating}
+                picture={post.picture}
+              />
+            );
+          })
+        ) : (
+          <h2>No posts here yet, be the first one to trec!</h2>
+        )}
       </div>
     </div>
   );

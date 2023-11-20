@@ -1,11 +1,12 @@
 import Input from '../Input/Input';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Dropdown from '../Dropdown/Dropdown';
 import './PostForm.scss';
 
 const initialValues = {
   caption: '',
-  landmark_name: '',
+  landmark: '',
   country: '',
   city: '',
   rating: '',
@@ -15,8 +16,30 @@ const initialValues = {
 
 export default function PostForm({ id }) {
   const [values, setValues] = useState(initialValues);
-  const [landmarkId, setLandmarkId] = useState(id);
+  const [countries, setCountries] = useState();
+  const [selectedCountry, setSelectedCountry] = useState({
+    value: '',
+    label: '',
+    id: '',
+  });
+  const [cities, setCities] = useState();
+  const [selectedCity, setSelectedCity] = useState({
+    value: '',
+    label: '',
+    id: '',
+  });
+  const [landmarks, setLandmarks] = useState();
+  const [selectedLandmark, setSelectedLandmark] = useState({
+    value: '',
+    label: '',
+    id: '',
+  });
+  const [disabled, setDisabled] = useState(true);
+
+  // const [landmarkId, setLandmarkId] = useState(id);
   const apiBody = process.env.REACT_APP_API_URL;
+
+  const token = sessionStorage.getItem('token');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,33 +49,90 @@ export default function PostForm({ id }) {
     });
   };
 
-  const getLandmarkId = async () => {
-    try {
-      const landmark = await axios.get(
-        `${apiBody}/${values.country}/${values.city}/${values.landmark_name}`
+  useEffect(() => {
+    const getAllCountries = async () => {
+      const response = await axios.get(`${apiBody}/countries`);
+      setCountries(
+        response.data.map((obj) => ({
+          value: obj.country_name,
+          label: obj.country_name,
+          id: obj.id,
+        }))
       );
-      console.log(landmark.data);
-      setLandmarkId(landmark.data);
+    };
+    getAllCountries();
+  }, [apiBody]);
+
+  useEffect(() => {
+    try {
+      const getAllCities = async () => {
+        const response = await axios.get(
+          `${apiBody}/countries/${selectedCountry.id}`
+        );
+        setCities(
+          response.data.map((obj) => ({
+            value: obj.city_name,
+            label: obj.city_name,
+            id: obj.id,
+          }))
+        );
+      };
+      if (selectedCountry.id !== '') getAllCities();
+      console.log(selectedCountry);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [selectedCountry, apiBody]);
+
+  useEffect(() => {
+    try {
+      const getAllLandmarks = async () => {
+        const response = await axios.get(
+          `${apiBody}/landmarks/${selectedCountry.id}/${selectedCity.id}`
+        );
+        setLandmarks(
+          response.data.map((obj) => ({
+            value: obj.landmark_name,
+            label: obj.landmark_name,
+            id: obj.id,
+          }))
+        );
+      };
+      if (selectedCountry.id !== '' && selectedCity !== '') getAllLandmarks();
+      console.log(selectedCountry);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [selectedCountry, selectedCity, apiBody]);
+
+  useEffect(() => {
+    if (
+      selectedLandmark !== '' &&
+      values.rating !== '' &&
+      values.caption !== ''
+    )
+      setDisabled(false);
+  }, [selectedLandmark, values]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    getLandmarkId();
-
     let newPost = {
       caption: values.caption,
-      landmark_id: landmarkId,
+      landmark_id: selectedLandmark.id,
       user_id: id,
       rating: values.rating,
       // picture
     };
 
+    console.log(newPost);
+
     try {
-      const response = await axios.post(`${apiBody}/posts/create`, newPost);
+      const response = await axios.post(`${apiBody}/posts/create`, newPost, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -61,29 +141,29 @@ export default function PostForm({ id }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input
-        label='Country'
+      <Dropdown
+        options={countries}
+        setSelectedElement={setSelectedCountry}
+        value={selectedCountry}
         name='country'
-        type='text'
-        placeholder='What country did you go to?'
-        value={values.country}
-        onChange={handleInputChange}
+        id='country'
+        type='country'
       />
-      <Input
-        label='City'
+      <Dropdown
+        options={cities}
+        setSelectedElement={setSelectedCity}
+        value={selectedCity}
         name='city'
-        type='text'
-        placeholder='What city were you in?'
-        value={values.city}
-        onChange={handleInputChange}
+        id='city'
+        type='city'
       />
-      <Input
-        label='Landmark'
-        name='landmark_name'
-        type='text'
-        placeholder='Where did you go?!'
-        value={values.landmark_name}
-        onChange={handleInputChange}
+      <Dropdown
+        options={landmarks}
+        setSelectedElement={setSelectedLandmark}
+        value={selectedLandmark}
+        name='landmark'
+        id='landmark'
+        type='landmark'
       />
       <Input
         label='Rating'
@@ -112,7 +192,12 @@ export default function PostForm({ id }) {
         onChange={handleInputChange}
       /> */}
 
-      <button type='submit'>Post!</button>
+      <button
+        className={`post__button ${disabled ? 'disabled' : ''}`}
+        type='submit'
+      >
+        Post!
+      </button>
     </form>
   );
 }
