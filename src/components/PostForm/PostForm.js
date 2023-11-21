@@ -2,6 +2,7 @@ import Input from '../Input/Input';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './PostForm.scss';
 
 const initialValues = {
@@ -10,12 +11,11 @@ const initialValues = {
   country: '',
   city: '',
   rating: '',
-  // user_id: '',
-  // picture: '',
 };
 
 export default function PostForm({ id }) {
   const [values, setValues] = useState(initialValues);
+  const [file, setFile] = useState();
   const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState({
     value: '',
@@ -35,9 +35,11 @@ export default function PostForm({ id }) {
     id: '',
   });
   const [disabled, setDisabled] = useState(true);
-
-  // const [landmarkId, setLandmarkId] = useState(id);
   const apiBody = process.env.REACT_APP_API_URL;
+
+  const location = useLocation();
+  const { state } = location;
+  const navigate = useNavigate();
 
   const token = sessionStorage.getItem('token');
 
@@ -47,6 +49,10 @@ export default function PostForm({ id }) {
       ...values,
       [name]: value,
     });
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -78,7 +84,6 @@ export default function PostForm({ id }) {
         );
       };
       if (selectedCountry.id !== '') getAllCities();
-      console.log(selectedCountry);
     } catch (error) {
       console.log(error);
     }
@@ -99,7 +104,6 @@ export default function PostForm({ id }) {
         );
       };
       if (selectedCountry.id !== '' && selectedCity !== '') getAllLandmarks();
-      console.log(selectedCountry);
     } catch (error) {
       console.log(error);
     }
@@ -120,9 +124,8 @@ export default function PostForm({ id }) {
     let newPost = {
       caption: values.caption,
       landmark_id: selectedLandmark.id,
-      user_id: id,
       rating: values.rating,
-      // picture
+      picture: file,
     };
 
     console.log(newPost);
@@ -131,16 +134,30 @@ export default function PostForm({ id }) {
       const response = await axios.post(`${apiBody}/posts/create`, newPost, {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
         },
       });
       console.log(response.data);
+      navigate(
+        `/${selectedCountry.id}/${selectedCity.id}/${selectedLandmark.id}`,
+        {
+          state: { name: selectedLandmark.value },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      className='post__form'
+      onSubmit={handleSubmit}
+      encType='multipart/form-data'
+    >
+      <label className='post__label' htmlFor='country'>
+        Country
+      </label>
       <Dropdown
         options={countries}
         setSelectedElement={setSelectedCountry}
@@ -149,6 +166,9 @@ export default function PostForm({ id }) {
         id='country'
         type='country'
       />
+      <label className='post__label' htmlFor='city'>
+        City
+      </label>
       <Dropdown
         options={cities}
         setSelectedElement={setSelectedCity}
@@ -157,6 +177,9 @@ export default function PostForm({ id }) {
         id='city'
         type='city'
       />
+      <label className='post__label' htmlFor='landmark'>
+        Landmark
+      </label>
       <Dropdown
         options={landmarks}
         setSelectedElement={setSelectedLandmark}
@@ -165,38 +188,41 @@ export default function PostForm({ id }) {
         id='landmark'
         type='landmark'
       />
-      <Input
-        label='Rating'
-        name='rating'
-        type='number'
-        placeholder='Rate it!'
-        min='1'
-        max='5'
-        value={values.rating}
-        onChange={handleInputChange}
-      />
+
       <Input
         label='Caption'
         name='caption'
         type='text'
-        placeholder='Overrated or underrated?'
+        placeholder='What did you think?'
         value={values.caption}
         onChange={handleInputChange}
       />
-      {/* <Input
-        label='Image'
-        name='picture'
-        type='file'
-        placeholder=''
-        value={values.picture}
-        onChange={handleInputChange}
-      /> */}
+
+      <div className='post__input--bottom'>
+        <div className='post__input--rating'>
+          <Input
+            label='Rating'
+            name='rating'
+            type='number'
+            placeholder='x / 5'
+            min='1'
+            max='5'
+            value={values.rating}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <label className='post__label post__input--upload' htmlFor='image'>
+          Upload photo!
+        </label>
+        <input type='file' name='image' onChange={handleFileChange} />
+      </div>
 
       <button
         className={`post__button ${disabled ? 'disabled' : ''}`}
         type='submit'
       >
-        Post!
+        Create Post
       </button>
     </form>
   );

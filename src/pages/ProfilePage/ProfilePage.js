@@ -16,10 +16,8 @@ export default function ProfilePage() {
   const token = sessionStorage.getItem('token');
 
   useEffect(() => {
-    // Here grab the token from sessionStorage and then make an axios request to profileUrl endpoint.
-    // Remember to include the token in Authorization header
-
     const login = async () => {
+      console.log(token);
       const response = await axios.get(`${apiBody}/user`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -68,7 +66,7 @@ export default function ProfilePage() {
   // ) : (
   return (
     <>
-      <div className='header'>
+      <div>
         {isImage ? (
           <img className='header__image' src={userInfo.picture} alt='profile' />
         ) : (

@@ -4,6 +4,7 @@
 
 .hide {
   display: none;
+  margin: none;
 }
 .show {
   display: inline;
@@ -18,7 +19,7 @@
   flex-direction: column;
   padding: 1rem;
   &__dropdown {
-    padding-bottom: 1rem;
+    // padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     text-align: start;

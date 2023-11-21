@@ -31,9 +31,9 @@ export default function LandmarkFeedPage() {
 
   return (
     <div>
-      <div className='header'>
-        <h1>{name}</h1>
-      </div>
+      {/* {/* <div className='header'> */}
+      <h1>{name}</h1>
+      {/* </div> */}
 
       <div>
         {posts.length > 0 ? (

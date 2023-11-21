@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Input from '../../components/Input/Input';
@@ -17,6 +17,8 @@ export default function SignupPage() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const [values, setValues] = useState(initialValues);
+  const [disabled, setDisabled] = useState(true);
+
   const navigate = useNavigate();
 
   const apiBody = process.env.REACT_APP_API_URL;
@@ -61,11 +63,23 @@ export default function SignupPage() {
     });
   };
 
+  useEffect(() => {
+    if (
+      values.first_name !== '' &&
+      values.last_name !== '' &&
+      values.email !== '' &&
+      values.password !== '' &&
+      values.confirm_password !== ''
+    ) {
+      setDisabled(false);
+    }
+  }, [values]);
+
   return (
     <div>
-      <div className='header'>
-        <h1>Sign Up</h1>
-      </div>
+      {/* <div className='header'> */}
+      <h1>Sign Up</h1>
+      {/* </div> */}
       <form onSubmit={handleSignup}>
         {success && (
           <div className='signup__message signup__message--success'>
@@ -113,7 +127,12 @@ export default function SignupPage() {
           onChange={handleInputChange}
           placeholder='Enter password confirmation here'
         />
-        <button type='submit'>Sign up!</button>
+        <button
+          type='submit'
+          className={`signup__button ${disabled ? 'disabled' : ''}`}
+        >
+          Sign up!
+        </button>
       </form>
 
       <p>

@@ -30,7 +30,6 @@ export default function LandmarkListPage() {
             id: obj.id,
           }))
         );
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -50,22 +49,21 @@ export default function LandmarkListPage() {
 
   return (
     <div className='list'>
-      <div className='header'>
-        <h1 className='list__title'>{`${state.city.label}, ${state.country.label}`}</h1>
-      </div>
-
-      <div>
-        <Dropdown
-          options={allLandmarks}
-          setSelectedElement={setSelectedLandmark}
-          value={selectedLandmark}
-          name='landmark'
-          id='landmark'
-          type='landmark'
-        />
-      </div>
+      {/* <div className='header'> */}
+      <h1 className='list__title'>{`${state.city.label}, ${state.country.label}`}</h1>
+      {/* </div> */}
 
       <main className='list__body'>
+        <div>
+          <Dropdown
+            options={allLandmarks}
+            setSelectedElement={setSelectedLandmark}
+            value={selectedLandmark}
+            name='landmark'
+            id='landmark'
+            type='landmark'
+          />
+        </div>
         {landmarkList.map((landmark) => {
           return (
             <Landmark

@@ -53,7 +53,6 @@ export default function SearchPage() {
         );
       };
       if (selectedCountry.id !== '') getAllCities();
-      console.log(selectedCountry);
     } catch (error) {
       console.log(error);
     }
@@ -66,8 +65,6 @@ export default function SearchPage() {
   }, [selectedCity, selectedCountry]);
 
   const handleSubmit = async (event) => {
-    console.log(selectedCountry.id);
-    console.log(selectedCity.id);
     event.preventDefault();
     navigate(`/${selectedCountry.id}/${selectedCity.id}`, {
       state: {
@@ -80,13 +77,13 @@ export default function SearchPage() {
   if (!allCountries) return <h1>Loading...</h1>;
   return (
     <div>
-      <div className='header'>
-        <h1>TravelRec</h1>
-      </div>
+      {/* <div className='header'> */}
+      <h1>Where to go?</h1>
+      {/* </div> */}
 
       <form className='form' onSubmit={handleSubmit}>
         <div className='form__dropdown'>
-          <label className='form__label' for='country'>
+          <label className='form__label' htmlFor='country'>
             Country
           </label>
           <Dropdown
@@ -102,7 +99,7 @@ export default function SearchPage() {
         <div className={`form__dropdown ${allCities ? 'show' : 'hide'}`}>
           {allCities && (
             <>
-              <label className='form__label' for='city'>
+              <label className='form__label' htmlFor='city'>
                 City
               </label>
               <Dropdown

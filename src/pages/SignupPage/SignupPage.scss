@@ -1,0 +1,12 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+.signup__button {
+  @include button;
+}
+
+.disabled {
+  @include disabled-button;
+}

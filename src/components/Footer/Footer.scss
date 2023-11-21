@@ -7,7 +7,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed;
+    height: 63px;
     bottom: 0;
     width: 100%;
     border-top: 1px solid lightgray;

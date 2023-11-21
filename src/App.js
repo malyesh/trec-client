@@ -9,11 +9,13 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={<SignupPage />} />
           <Route path='/signup' element={<SignupPage />} />
@@ -29,7 +31,7 @@ function App() {
             element={<LandmarkFeedPage />}
           />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );

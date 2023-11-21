@@ -4,9 +4,44 @@
 @use '../../styles/partials/variables' as *;
 
 .post {
+  &__form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+  &__label {
+    margin-bottom: 8px;
+  }
+  &__input {
+    &--rating {
+      width: 50px;
+    }
+    &--upload {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: flex;
+      padding: 6px 12px;
+      cursor: pointer;
+      height: 50px;
+      width: fit-content;
+      margin-bottom: 1rem;
+      align-items: center;
+      background-color: #bad4aa;
+    }
+    &--bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
   &__button {
     @include button;
   }
+}
+
+input[type='file'] {
+  display: none;
 }
 
 .disabled {

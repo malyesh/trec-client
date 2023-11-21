@@ -1,6 +1,6 @@
 import Input from '../../components/Input/Input';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './LoginPage.scss';
 
@@ -10,6 +10,7 @@ export default function LoginPage() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
   const navigate = useNavigate();
 
@@ -48,11 +49,15 @@ export default function LoginPage() {
     }
   };
 
+  useEffect(() => {
+    if (email !== '' && password !== '') setDisabled(false);
+  }, [email, password]);
+
   return (
     <div>
-      <div className='header'>
-        <h1>Log in</h1>
-      </div>
+      {/* <div className='header'> */}
+      <h1>Log in</h1>
+      {/* </div> */}
       {isLoginError && <label className='error'>{errorMessage}</label>}
       <form onSubmit={handleLogin}>
         <Input
@@ -72,7 +77,12 @@ export default function LoginPage() {
           placeholder='Enter password here'
         />
 
-        <button type='submit'>Log in!</button>
+        <button
+          type='submit'
+          className={`login__button ${disabled ? 'disabled' : ''}`}
+        >
+          Log in!
+        </button>
       </form>
 
       <p>
