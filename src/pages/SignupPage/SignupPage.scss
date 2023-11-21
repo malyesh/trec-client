@@ -3,8 +3,40 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
-.signup__button {
-  @include button;
+.signup {
+  padding: 1rem;
+  text-align: left;
+  &__title {
+    padding-bottom: 2rem;
+  }
+  &__button {
+    @include button;
+  }
+  &__login {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    &--link {
+      padding-left: 8px;
+    }
+  }
+  &__label {
+    margin-bottom: 8px;
+  }
+  &__input {
+    &--upload {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: flex;
+      padding: 6px 12px;
+      cursor: pointer;
+      height: 50px;
+      width: fit-content;
+      margin-bottom: 1rem;
+      align-items: center;
+      background-color: #bad4aa;
+    }
+  }
 }
 
 .disabled {

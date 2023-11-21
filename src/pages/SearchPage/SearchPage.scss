@@ -1,6 +1,7 @@
 @use '../../styles/partials/globals' as *;
 @use '../../styles/partials/fonts' as *;
 @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
 
 .hide {
   display: none;
@@ -10,16 +11,17 @@
   display: inline;
 }
 
-.header {
-  padding: 1rem;
-}
-
-.form {
+.search {
+  // background-color: #ebf5df;
   display: flex;
   flex-direction: column;
+  // text-align: left;
   padding: 1rem;
+  border-bottom: 1px solid lightgray;
+  &__title {
+    padding-bottom: 2rem;
+  }
   &__dropdown {
-    // padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
     text-align: start;
@@ -34,4 +36,8 @@
 
 .disabled {
   @include disabled-button;
+}
+
+.posts-container {
+  padding-top: 1rem;
 }

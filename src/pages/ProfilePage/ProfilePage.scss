@@ -1,15 +1,16 @@
 @use '../../styles/partials/globals' as *;
 @use '../../styles/partials/colors' as *;
 
-.header {
+.profile-header {
   display: flex;
-  padding: 1rem;
+  // padding: 1rem;
   flex-direction: column;
   align-items: center;
   &__image {
     height: 200px;
     width: 200px;
     border-radius: 50%;
+    object-fit: cover;
     &--default {
       background-color: #808080;
     }

@@ -36,7 +36,6 @@ export default function LoginPage() {
       let token = response.data.token;
 
       sessionStorage.setItem('token', token);
-      // setIsLoggedIn(true);
       setIsLoginError(false);
       setErrorMessage('');
 
@@ -54,12 +53,11 @@ export default function LoginPage() {
   }, [email, password]);
 
   return (
-    <div>
-      {/* <div className='header'> */}
-      <h1>Log in</h1>
-      {/* </div> */}
+    <div className='login'>
+      <h2 className='login__title'>Log in</h2>
+
       {isLoginError && <label className='error'>{errorMessage}</label>}
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className='login__form'>
         <Input
           label='Email'
           name='email'
@@ -85,8 +83,11 @@ export default function LoginPage() {
         </button>
       </form>
 
-      <p>
-        Need an account? <Link to='/signup'>Sign up</Link>
+      <p className='login__signup'>
+        Need an account?{' '}
+        <Link className='login__signup--link' to='/signup'>
+          Sign up
+        </Link>
       </p>
     </div>
   );

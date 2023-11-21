@@ -6,6 +6,10 @@ import './Header.scss';
 
 export default function Header() {
   const navigate = useNavigate();
+  let token = '';
+  if (sessionStorage.getItem('token')) {
+    token = sessionStorage.getItem('token');
+  }
 
   return (
     <div className='header'>
@@ -20,29 +24,53 @@ export default function Header() {
         </h1>
       </section>
 
-      <div className='header__section header__section--logo'>
-        <img
-          className='header__icon header__icon--camera'
-          src={cameraIcon}
-          alt='camera'
-          onClick={() => {
-            navigate('/post');
-          }}
-        />
-        <img
-          className='header__icon header__icon--heart'
-          src={heartIcon}
-          alt='heart'
-        />
-        <img
-          className='header__icon header__icon--profile'
-          src={userIcon}
-          alt='profile'
-          onClick={() => {
-            navigate('/profile');
-          }}
-        />
-      </div>
+      {token && (
+        <div className='header__section header__section--logo'>
+          <img
+            className='header__icon header__icon--camera'
+            src={cameraIcon}
+            alt='camera'
+            onClick={() => {
+              navigate('/post');
+            }}
+          />
+          <img
+            className='header__icon header__icon--heart'
+            src={heartIcon}
+            alt='heart'
+          />
+          <img
+            className='header__icon header__icon--profile'
+            src={userIcon}
+            alt='profile'
+            onClick={() => {
+              navigate('/profile');
+            }}
+          />
+        </div>
+      )}
+      {!token && (
+        <div>
+          <button
+            className='signup-button'
+            type='click'
+            onClick={() => {
+              navigate('/signup');
+            }}
+          >
+            sign up
+          </button>
+          <button
+            className='login-button'
+            type='click'
+            onClick={() => {
+              navigate('/login');
+            }}
+          >
+            login
+          </button>
+        </div>
+      )}
     </div>
   );
 }

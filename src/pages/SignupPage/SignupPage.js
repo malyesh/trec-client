@@ -16,12 +16,17 @@ const initialValues = {
 export default function SignupPage() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [file, setFile] = useState();
   const [values, setValues] = useState(initialValues);
   const [disabled, setDisabled] = useState(true);
 
   const navigate = useNavigate();
 
   const apiBody = process.env.REACT_APP_API_URL;
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -32,18 +37,19 @@ export default function SignupPage() {
           last_name: values.last_name,
           email: values.email,
           password: values.password,
+          picture: file,
         };
+        console.log(userInput);
 
-        const response = await axios.post(`${apiBody}/user/signup`, userInput);
-
+        const response = await axios.post(`${apiBody}/user/signup`, userInput, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         console.log(response.data);
-
         setSuccess(true);
-
         setError('');
-
         event.target.reset();
-
         window.scrollTo(0, 0);
 
         setTimeout(() => {
@@ -76,11 +82,14 @@ export default function SignupPage() {
   }, [values]);
 
   return (
-    <div>
-      {/* <div className='header'> */}
-      <h1>Sign Up</h1>
-      {/* </div> */}
-      <form onSubmit={handleSignup}>
+    <div className='signup'>
+      <h2 className='signup__title'>Sign Up</h2>
+
+      <form
+        onSubmit={handleSignup}
+        encType='multipart/form-data'
+        className='signup__form'
+      >
         {success && (
           <div className='signup__message signup__message--success'>
             Sign up successful!
@@ -127,16 +136,25 @@ export default function SignupPage() {
           onChange={handleInputChange}
           placeholder='Enter password confirmation here'
         />
+
+        <label className='signup__label signup__input--upload'>
+          Upload photo!
+          <input type='file' name='image' onChange={handleFileChange} />
+        </label>
+
         <button
           type='submit'
           className={`signup__button ${disabled ? 'disabled' : ''}`}
         >
-          Sign up!
+          sign up!
         </button>
       </form>
 
-      <p>
-        Already have an account? <Link to='/login'>Log in</Link>
+      <p className='signup__login'>
+        Already have an account?{' '}
+        <Link className='signup__login--link' to='/login'>
+          Log in
+        </Link>
       </p>
     </div>
   );

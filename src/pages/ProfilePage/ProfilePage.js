@@ -1,6 +1,6 @@
 import './ProfilePage.scss';
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Post from '../../components/Post/Post';
 
@@ -43,46 +43,53 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const checkImage = () => {
-      if (userInfo.picture === '') return setIsImage(false);
-      return setIsImage(true);
+      if (userInfo.picture === '') {
+        setIsImage(false);
+      } else {
+        setIsImage(true);
+      }
     };
     checkImage();
   }, [userInfo.picture]);
 
-  // const handleLogout = () => {
-  //   setIsLoading(true);
-  //   sessionStorage.removeItem('token');
-  //   // navigate()
-  // };
+  const handleLogout = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      sessionStorage.removeItem('token');
+      navigate('/');
+    }, 500);
+  };
 
-  // if (isLoading) return <h1>Log in or create an account to see this info!</h1>;
+  if (!token) {
+    console.log('here');
+    return <Navigate to='/login' />;
+  }
   if (isLoading || !allPosts) return <h1>Loading...</h1>;
 
-  // return isLoading ? (
-  //   <>
-  //     <h1>Log in or create an account to see this info!</h1>
-  //     <Link to={'/signup'}>Sign up here!</Link>
-  //   </>
-  // ) : (
   return (
     <>
-      <div>
-        {isImage ? (
-          <img className='header__image' src={userInfo.picture} alt='profile' />
-        ) : (
-          <div className='header__image header__image--default'></div>
+      <div className='profile-header'>
+        {isImage && (
+          <img
+            className='profile-header__image'
+            src={`${apiBody}/${userInfo.picture}`}
+            alt='profile'
+          />
         )}
-        <h1 className='header__name'>
+        {!isImage && (
+          <div className='profile-header__image profile-header__image--default'></div>
+        )}
+
+        <h1 className='profile-header__name'>
           {userInfo.first_name} {userInfo.last_name}
         </h1>
       </div>
 
-      {/* <div>
+      <div>
         <button type='click' onClick={handleLogout}>
           log out?
         </button>
-      </div> */}
-
+      </div>
       <div>
         {allPosts.map((post) => {
           return (

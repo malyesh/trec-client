@@ -17,9 +17,8 @@ html {
 
 body,
 button {
-  //   background-color: rgb(235, 245, 223);
-  //   background-color: #d2fdff;
   font-family: 'Metropolis', Arial, Helvetica, sans-serif;
+  // background-color: #ebf5df;
 }
 
 h1,
@@ -27,6 +26,12 @@ h2,
 h3 {
   font-family: 'Metropolis', Arial, Helvetica, sans-serif;
   color: #e77728;
+  // color: $darkgreen;
+}
+
+h2,
+h3 {
+  // font-weight: 400;
 }
 
 .css-b62m3t-container,

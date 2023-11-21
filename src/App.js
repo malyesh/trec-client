@@ -3,7 +3,7 @@ import HomePage from './pages/SearchPage/SearchPage';
 import PostPage from '../src/pages/PostPage/PostPage';
 import LandmarkListPage from '../src/pages/LandmarkListPage/LandmarkListPage';
 import LandmarkFeedPage from '../src/pages/LandmarkFeedPage/LandmarkFeedPage';
-import Footer from './components/Footer/Footer';
+// import Footer from './components/Footer/Footer';
 import './App.css';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -17,10 +17,9 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/' element={<SignupPage />} />
+          <Route path='/' element={<SearchPage />} />
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/search' element={<SearchPage />} />
-          {/* <Route path='/feed' element={<MainFeedPage />} />    */}
           <Route path='/login' element={<LoginPage />} />
           <Route path='/home' element={<HomePage />} />
           <Route path='/post' element={<PostPage />} />

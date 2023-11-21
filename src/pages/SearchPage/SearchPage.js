@@ -1,4 +1,5 @@
 import Dropdown from '../../components/Dropdown/Dropdown';
+import Post from '../../components/Post/Post';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -18,6 +19,7 @@ export default function SearchPage() {
     id: '',
   });
   const [disabled, setDisabled] = useState(true);
+  const [posts, setPosts] = useState();
 
   const navigate = useNavigate();
 
@@ -34,7 +36,11 @@ export default function SearchPage() {
         }))
       );
     };
-
+    const getAllPosts = async () => {
+      const response = await axios.get(`${apiBody}/posts`);
+      setPosts(response.data);
+    };
+    getAllPosts();
     getAllCountries();
   }, [apiBody]);
 
@@ -74,54 +80,72 @@ export default function SearchPage() {
     });
   };
 
-  if (!allCountries) return <h1>Loading...</h1>;
+  if (!allCountries || !posts) return <h1>Loading...</h1>;
   return (
     <div>
-      {/* <div className='header'> */}
-      <h1>Where to go?</h1>
-      {/* </div> */}
+      <div className='search'>
+        <h2 className='search__title'>Where do you want to go?</h2>
 
-      <form className='form' onSubmit={handleSubmit}>
-        <div className='form__dropdown'>
-          <label className='form__label' htmlFor='country'>
-            Country
-          </label>
-          <Dropdown
-            options={allCountries}
-            setSelectedElement={setSelectedCountry}
-            value={selectedCountry}
-            name='country'
-            id='country'
-            type='country'
-          />
-        </div>
+        <form className='search__form' onSubmit={handleSubmit}>
+          <div className='search__dropdown'>
+            <label className='search__label' htmlFor='country'>
+              Country
+            </label>
+            <Dropdown
+              options={allCountries}
+              setSelectedElement={setSelectedCountry}
+              value={selectedCountry}
+              name='country'
+              id='country'
+              type='country'
+            />
+          </div>
 
-        <div className={`form__dropdown ${allCities ? 'show' : 'hide'}`}>
-          {allCities && (
-            <>
-              <label className='form__label' htmlFor='city'>
-                City
-              </label>
-              <Dropdown
-                options={allCities}
-                setSelectedElement={setSelectedCity}
-                value={selectedCity}
-                name='city'
-                id='city'
-                type='city'
-              />
-            </>
-          )}
-        </div>
+          <div className={`search__dropdown ${allCities ? 'show' : 'hide'}`}>
+            {allCities && (
+              <>
+                <label className='search__label' htmlFor='city'>
+                  City
+                </label>
+                <Dropdown
+                  options={allCities}
+                  setSelectedElement={setSelectedCity}
+                  value={selectedCity}
+                  name='city'
+                  id='city'
+                  type='city'
+                />
+              </>
+            )}
+          </div>
 
-        <button
-          className={`form__button ${disabled ? 'disabled' : ''}`}
-          type='submit'
-          disabled={disabled}
-        >
-          lets goo
-        </button>
-      </form>
+          <button
+            className={`search__button ${disabled ? 'disabled' : ''}`}
+            type='submit'
+            disabled={disabled}
+          >
+            lets goo
+          </button>
+        </form>
+      </div>
+
+      <section className='posts-container'>
+        <h2 className='posts-container__title'>
+          See where other people visited!
+        </h2>
+        {posts.map((post) => {
+          return (
+            <Post
+              name={`${post.first_name} ${post.last_name}`}
+              key={post.id}
+              landmark={post.landmark_name}
+              caption={post.caption}
+              rating={post.rating}
+              picture={post.picture}
+            />
+          );
+        })}
+      </section>
     </div>
   );
 }

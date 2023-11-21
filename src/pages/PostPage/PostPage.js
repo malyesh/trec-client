@@ -39,9 +39,7 @@ export default function PostPage() {
 
   return (
     <div>
-      {/* <div className='header'> */}
-      <h1>Hey {user.first_name}! Have a Rec? </h1>
-      {/* </div> */}
+      <h2>Hey {user.first_name}! Have a Rec? </h2>
 
       <PostForm id={user.id} />
     </div>

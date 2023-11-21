@@ -212,10 +212,10 @@ export default function PostForm({ id }) {
           />
         </div>
 
-        <label className='post__label post__input--upload' htmlFor='image'>
+        <label className='post__label post__input--upload'>
           Upload photo!
+          <input type='file' name='image' onChange={handleFileChange} />
         </label>
-        <input type='file' name='image' onChange={handleFileChange} />
       </div>
 
       <button
