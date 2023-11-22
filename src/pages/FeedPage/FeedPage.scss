@@ -1,0 +1,9 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
+.feed {
+  &__title {
+  }
+}

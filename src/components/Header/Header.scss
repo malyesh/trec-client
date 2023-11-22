@@ -2,32 +2,76 @@
 @use '../../styles/partials/colors' as *;
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
+@use '../../styles/partials/fonts' as *;
+
+.normal {
+  font-weight: 400;
+  color: white;
+}
 
 .header {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   position: sticky;
-  background-color: white;
+  height: 2rem;
   top: 0;
   z-index: 2;
+  &__other {
+    background-color: white;
+    padding-bottom: 2rem;
+  }
+  &__search {
+    background-image: url('../../assets/images/iStock-1297349747.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    height: 35vh;
+  }
   @include desktop {
     padding-top: 2rem;
     @include desktop-container;
   }
+  &__button {
+    @include button;
+    height: 1.25rem;
+    font-size: 12px;
+    width: fit-content;
+    padding: 0 8px;
+    margin-left: 4px;
+    background-color: white;
+    &:hover {
+      background-color: $orange;
+    }
+    &--active {
+      background-color: $orange;
+    }
+  }
   &__section {
+    height: fit-content;
     &--logo {
       display: flex;
       align-items: center;
     }
   }
   &__logo {
-    font-size: 30px;
-    color: $pumpkin;
+    font-size: 1.25rem;
+    color: white;
+    &--orange {
+      color: $pumpkin;
+    }
   }
   &__icon {
-    height: 30px;
-    padding-left: 1rem;
+    height: 1.25rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    // margin: 0 8px;
+    &--plane {
+      background-color: white;
+      &:hover {
+        background-color: $orange;
+      }
+    }
     &--heart {
       height: 26px;
     }
@@ -35,19 +79,4 @@
       height: 28px;
     }
   }
-}
-
-.login-button {
-  @include button;
-  height: 30px;
-  width: fit-content;
-  padding: 0 8px;
-}
-
-.signup-button {
-  @include button;
-  height: 30px;
-  width: fit-content;
-  padding: 0 8px;
-  background-color: white;
 }

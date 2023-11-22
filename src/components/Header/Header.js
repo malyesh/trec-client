@@ -1,26 +1,66 @@
 import userIcon from '../../assets/icons//icons8-user-48.png';
 import heartIcon from '../../assets/icons/heart-3068.svg';
 import cameraIcon from '../../assets/icons/camera-svgrepo-com.svg';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import planeIcon from '../../assets/icons/airplane-outline-svgrepo-com.svg';
 import './Header.scss';
 
 export default function Header() {
+  const [isSearch, setIsSearch] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
+  const [isFeed, setIsFeed] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
   let token = '';
   if (sessionStorage.getItem('token')) {
     token = sessionStorage.getItem('token');
   }
 
+  useEffect(() => {
+    if (pathname === '/' || pathname === '/search') {
+      setIsSearch(true);
+      setIsLogin(false);
+      setIsSignup(false);
+      setIsFeed(false);
+      console.log(pathname);
+    } else if (pathname === '/login') {
+      setIsLogin(true);
+      setIsSearch(false);
+      setIsSignup(false);
+      setIsFeed(false);
+    } else if (pathname === '/signup') {
+      setIsSignup(true);
+      setIsLogin(false);
+      setIsSearch(false);
+      setIsFeed(false);
+    } else if (pathname === '/feed') {
+      setIsFeed(true);
+      setIsSignup(false);
+      setIsLogin(false);
+      setIsSearch(false);
+    }
+  }, [pathname]);
+
   return (
-    <div className='header'>
+    <div className={`header ${isSearch ? 'header__search' : 'header__other'}`}>
       <section className='header__section'>
         <h1
-          className='header__logo'
+          className={`header__logo ${!isSearch ? 'header__logo--orange' : ''}`}
           onClick={() => {
             navigate('/search');
           }}
         >
-          TravelRec
+          Travel
+          <span
+            className={`header__logo normal ${
+              !isSearch ? 'header__logo--orange' : ''
+            }`}
+          >
+            Rec
+          </span>
         </h1>
       </section>
 
@@ -50,9 +90,21 @@ export default function Header() {
         </div>
       )}
       {!token && (
-        <div>
+        <div className='header__section header__section--logo'>
+          <img
+            className={`header__icon header__icon--plane ${
+              isFeed ? 'header__icon--active' : ''
+            }`}
+            src={planeIcon}
+            alt='plane'
+            onClick={() => {
+              navigate('/feed');
+            }}
+          />
           <button
-            className='signup-button'
+            className={`header__button header__button--signup ${
+              isSignup ? 'header__button--active' : ''
+            }`}
             type='click'
             onClick={() => {
               navigate('/signup');
@@ -61,7 +113,9 @@ export default function Header() {
             sign up
           </button>
           <button
-            className='login-button'
+            className={`header__button header__button--login ${
+              isLogin ? 'header__button--active' : ''
+            }`}
             type='click'
             onClick={() => {
               navigate('/login');

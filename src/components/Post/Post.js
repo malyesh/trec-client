@@ -2,7 +2,14 @@ import './Post.scss';
 import goldstar from '../../assets/icons/goldstar.svg';
 import greystar from '../../assets/icons/greystar.svg';
 
-export default function Post({ name, landmark, caption, rating, picture }) {
+export default function Post({
+  name,
+  landmark,
+  caption,
+  rating,
+  picture,
+  profile,
+}) {
   const apiBody = process.env.REACT_APP_API_URL;
 
   const renderStars = () => {
@@ -22,6 +29,14 @@ export default function Post({ name, landmark, caption, rating, picture }) {
 
   return (
     <div className='post'>
+      <div className='post__profile'>
+        <img
+          className='post__profile--image'
+          src={`${apiBody}/${profile}`}
+          alt='profile'
+        />
+      </div>
+
       <img className='post__picture' src={`${apiBody}/${picture}`} alt='post' />
       <div className='post__footer'>
         <p className='post__landmark'>{landmark}</p>

@@ -4,11 +4,12 @@
 
 @mixin button {
   width: 100%;
-  height: 50px;
+  height: 45px;
   border-radius: 4px;
-  background-color: $celadon;
-  color: #0a210f;
-  font-size: 1rem;
+  background-color: $orange;
+  color: $navy;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 @mixin disabled-button {

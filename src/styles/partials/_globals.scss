@@ -8,7 +8,7 @@
   margin: 0;
   border: 0;
   padding: 0;
-  color: #0a210f;
+  color: $navy;
 }
 
 html {
@@ -25,7 +25,9 @@ h1,
 h2,
 h3 {
   font-family: 'Metropolis', Arial, Helvetica, sans-serif;
-  color: #e77728;
+  // font-family: 'Proxima', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  // color: #e77728;
   // color: $darkgreen;
 }
 
@@ -37,8 +39,9 @@ h3 {
 .css-b62m3t-container,
 .css-13cymwt-control,
 .css-1fdsijx-ValueContainer {
-  height: 50px;
+  height: 45px;
   text-align: start;
+  font-size: 14px;
 }
 
 .css-b62m3t-container {

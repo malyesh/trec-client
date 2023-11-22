@@ -1,5 +1,4 @@
 import Dropdown from '../../components/Dropdown/Dropdown';
-import Post from '../../components/Post/Post';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -19,7 +18,6 @@ export default function SearchPage() {
     id: '',
   });
   const [disabled, setDisabled] = useState(true);
-  const [posts, setPosts] = useState();
 
   const navigate = useNavigate();
 
@@ -36,11 +34,6 @@ export default function SearchPage() {
         }))
       );
     };
-    const getAllPosts = async () => {
-      const response = await axios.get(`${apiBody}/posts`);
-      setPosts(response.data);
-    };
-    getAllPosts();
     getAllCountries();
   }, [apiBody]);
 
@@ -80,17 +73,12 @@ export default function SearchPage() {
     });
   };
 
-  if (!allCountries || !posts) return <h1>Loading...</h1>;
+  if (!allCountries) return <h1>Loading...</h1>;
   return (
     <div>
       <div className='search'>
-        <h2 className='search__title'>Where do you want to go?</h2>
-
         <form className='search__form' onSubmit={handleSubmit}>
           <div className='search__dropdown'>
-            <label className='search__label' htmlFor='country'>
-              Country
-            </label>
             <Dropdown
               options={allCountries}
               setSelectedElement={setSelectedCountry}
@@ -104,9 +92,6 @@ export default function SearchPage() {
           <div className={`search__dropdown ${allCities ? 'show' : 'hide'}`}>
             {allCities && (
               <>
-                <label className='search__label' htmlFor='city'>
-                  City
-                </label>
                 <Dropdown
                   options={allCities}
                   setSelectedElement={setSelectedCity}
@@ -124,28 +109,10 @@ export default function SearchPage() {
             type='submit'
             disabled={disabled}
           >
-            lets goo
+            search
           </button>
         </form>
       </div>
-
-      <section className='posts-container'>
-        <h2 className='posts-container__title'>
-          See where other people visited!
-        </h2>
-        {posts.map((post) => {
-          return (
-            <Post
-              name={`${post.first_name} ${post.last_name}`}
-              key={post.id}
-              landmark={post.landmark_name}
-              caption={post.caption}
-              rating={post.rating}
-              picture={post.picture}
-            />
-          );
-        })}
-      </section>
     </div>
   );
 }

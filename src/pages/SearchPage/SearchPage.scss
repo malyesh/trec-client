@@ -12,15 +12,15 @@
 }
 
 .search {
-  // background-color: #ebf5df;
   display: flex;
   flex-direction: column;
-  // text-align: left;
   padding: 1rem;
-  border-bottom: 1px solid lightgray;
-  &__title {
-    padding-bottom: 2rem;
+  &__form {
+    position: relative;
+    top: -40px;
+    z-index: 3;
   }
+
   &__dropdown {
     display: flex;
     flex-direction: column;
@@ -38,6 +38,6 @@
   @include disabled-button;
 }
 
-.posts-container {
-  padding-top: 1rem;
-}
+// .posts-container {
+//   padding-top: 1rem;
+// }
