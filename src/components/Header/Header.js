@@ -97,6 +97,9 @@ export default function Header() {
             }`}
             src={heartIcon}
             alt='heart'
+            onClick={() => {
+              navigate('/favorites');
+            }}
           />
           <img
             className={`header__icon header__icon--profile ${

@@ -1,0 +1,17 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
+
+.favorites {
+  text-align: left;
+  &__title {
+    display: flex;
+    padding: 0.5rem 1rem;
+    &--back {
+      height: 2.5rem;
+      position: relative;
+      top: -6px;
+      padding-right: 4px;
+    }
+  }
+}
