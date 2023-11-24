@@ -85,8 +85,12 @@ export default function ProfilePage() {
         </h1>
       </div>
 
-      <div>
-        <button type='click' onClick={handleLogout}>
+      <div className='profile__button'>
+        <button
+          className='profile__button--logout'
+          type='click'
+          onClick={handleLogout}
+        >
           log out?
         </button>
       </div>
@@ -94,12 +98,15 @@ export default function ProfilePage() {
         {allPosts.map((post) => {
           return (
             <Post
-              key={post.id}
               name={`${post.first_name} ${post.last_name}`}
+              key={post.id}
+              id={post.id}
               landmark={post.landmark_name}
               caption={post.caption}
               rating={post.rating}
               picture={post.picture}
+              date={post.created_at}
+              profile={post.profile}
             />
           );
         })}

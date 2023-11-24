@@ -1,21 +1,31 @@
 @use '../../styles/partials/globals' as *;
 @use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
 
-.profile-header {
-  display: flex;
-  // padding: 1rem;
-  flex-direction: column;
-  align-items: center;
-  &__image {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    &--default {
-      background-color: #808080;
+.profile {
+  &-header {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    &__image {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      &--default {
+        background-color: #808080;
+      }
+    }
+    &__name {
+      padding: 1rem;
     }
   }
-  &__name {
-    padding: 1rem;
+  &__button {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    &--logout {
+      @include button;
+    }
   }
 }
