@@ -10,6 +10,7 @@
   color: $navy;
   font-size: 14px;
   cursor: pointer;
+  box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
 }
 
 @mixin disabled-button {
