@@ -1,10 +1,10 @@
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import './LandmarkListPage.scss';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import Landmark from '../../components/Landmark/Landmark';
+import Title from '../../components/Title/Title';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Landmark from '../../components/Landmark/Landmark';
-import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
+import './LandmarkListPage.scss';
 
 export default function LandmarkListPage() {
   const [landmarkList, setLandmarkList] = useState(null);
@@ -50,17 +50,7 @@ export default function LandmarkListPage() {
 
   return (
     <div className='list'>
-      <h2 className='list__title'>
-        <img
-          src={arrowIcon}
-          alt='arrow'
-          className='list__title--back'
-          onClick={() => {
-            navigate(-1);
-          }}
-        />
-        {`${state.city.label}, ${state.country.label}`}
-      </h2>
+      <Title title={`${state.city.label}, ${state.country.label}`} />
 
       <main className='list__body'>
         <Dropdown

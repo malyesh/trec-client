@@ -1,0 +1,12 @@
+@use '../../styles/partials/globals' as *;
+
+.title {
+  display: flex;
+  padding: 0.5rem;
+  &--back {
+    height: 2.5rem;
+    position: relative;
+    top: -6px;
+    padding-right: 4px;
+  }
+}

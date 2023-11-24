@@ -1,5 +1,6 @@
 import './LandmarkFeedPage.scss';
 import Post from '../../components/Post/Post';
+import Title from '../../components/Title/Title';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
 import planeIcon from '../../assets/icons/airplane-outline-svgrepo-com.svg';
@@ -33,17 +34,7 @@ export default function LandmarkFeedPage() {
 
   return (
     <div className='feed'>
-      <h2 className='feed__title'>
-        <img
-          src={arrowIcon}
-          alt='arrow'
-          className='feed__title--back'
-          onClick={() => {
-            navigate(-1);
-          }}
-        />
-        {`${name}`}
-      </h2>
+      <Title title={`${name}`} />
 
       <div className='feed__body'>
         {posts.length > 0 ? (

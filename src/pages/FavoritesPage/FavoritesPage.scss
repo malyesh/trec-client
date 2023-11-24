@@ -4,14 +4,9 @@
 
 .favorites {
   text-align: left;
-  &__title {
-    display: flex;
-    padding: 0.5rem 1rem;
-    &--back {
-      height: 2.5rem;
-      position: relative;
-      top: -6px;
-      padding-right: 4px;
-    }
+  &__empty {
+    padding: 0 1rem;
+    text-align: center;
+    line-height: 2rem;
   }
 }

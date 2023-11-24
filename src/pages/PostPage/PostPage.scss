@@ -1,20 +1,15 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
 .post-page {
-  padding: 1rem;
-  padding-top: 2rem;
   text-align: left;
-  &__title {
-    display: flex;
-    padding-bottom: 0.5rem;
-    &--back {
-      height: 2.5rem;
-      position: relative;
-      top: -6px;
-      padding-right: 4px;
-    }
-  }
   &__body {
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    padding-top: 0;
   }
   &__error {
     padding: 2rem;

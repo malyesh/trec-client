@@ -2,20 +2,7 @@
 @use '../../styles/partials/mixins' as *;
 
 .feed {
-  // padding: 1rem 0;
   text-align: left;
-  &__title {
-    display: flex;
-    padding: 0.5rem 1rem;
-    // padding-top: 0.75rem;
-
-    &--back {
-      height: 2.5rem;
-      position: relative;
-      top: -6px;
-      padding-right: 4px;
-    }
-  }
   &__body {
     display: flex;
     flex-direction: column;

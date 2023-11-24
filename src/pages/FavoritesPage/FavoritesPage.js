@@ -1,4 +1,5 @@
 import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
+import Title from '../../components/Title/Title';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Post from '../../components/Post/Post';
@@ -26,19 +27,11 @@ export default function FavoritesPage() {
 
   return (
     <div className='favorites'>
-      <h2 className='favorites__title'>
-        <img
-          src={arrowIcon}
-          alt='arrow'
-          className='favorites__title--back'
-          onClick={() => {
-            navigate(-1);
-          }}
-        />
-        Your favorites
-      </h2>
+      <Title title='Your favorites' />
       {favorites.length === 0 ? (
-        <h2>You haven't favorited anything yet!</h2>
+        <h2 className='favorites__empty'>
+          You haven't favorited anything yet!
+        </h2>
       ) : (
         favorites.map((post) => {
           return (

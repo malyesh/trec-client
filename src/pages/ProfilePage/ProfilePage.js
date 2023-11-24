@@ -1,6 +1,7 @@
 import './ProfilePage.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
+import profileIcon from '../../assets/icons/profile.svg';
 import axios from 'axios';
 import Post from '../../components/Post/Post';
 
@@ -77,7 +78,11 @@ export default function ProfilePage() {
           />
         )}
         {!isImage && (
-          <div className='profile-header__image profile-header__image--default'></div>
+          <img
+            className='profile-header__image profile-header__image--default'
+            src={profileIcon}
+            alt='profile'
+          />
         )}
 
         <h1 className='profile-header__name'>

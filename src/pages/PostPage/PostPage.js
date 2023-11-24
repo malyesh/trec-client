@@ -1,7 +1,7 @@
+import PostForm from '../../components/PostForm/PostForm';
+import Title from '../../components/Title/Title';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PostForm from '../../components/PostForm/PostForm';
-import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
 import axios from 'axios';
 import './PostPage.scss';
 
@@ -57,19 +57,10 @@ export default function PostPage() {
     <div className='post-page'>
       {!failedAuth && user ? (
         <>
-          <h2 className='post-page__title'>
-            <img
-              src={arrowIcon}
-              alt='arrow'
-              className='post-page__title--back'
-              onClick={() => {
-                navigate(-1);
-              }}
-            />
-            Been somewhere cool?
-          </h2>
-
-          <PostForm id={user.id} />
+          <Title title='Been somewhere cool?' />
+          <div className='post-page__body'>
+            <PostForm id={user.id} />
+          </div>
         </>
       ) : (
         <>{renderMessage()}</>

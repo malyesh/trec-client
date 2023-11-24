@@ -1,13 +1,11 @@
 import Post from '../../components/Post/Post';
-import axios from 'axios';
+import Title from '../../components/Title/Title';
 import { useState, useEffect } from 'react';
-import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
+import axios from 'axios';
 import './FeedPage.scss';
-import { useNavigate } from 'react-router-dom';
 
 export default function FeedPage() {
   const [posts, setPosts] = useState();
-  const navigate = useNavigate();
 
   const apiBody = process.env.REACT_APP_API_URL;
 
@@ -24,17 +22,7 @@ export default function FeedPage() {
 
   return (
     <div className='feed'>
-      <h2 className='feed__title'>
-        <img
-          src={arrowIcon}
-          alt='arrow'
-          className='feed__title--back'
-          onClick={() => {
-            navigate(-1);
-          }}
-        />
-        Popular posts
-      </h2>
+      <Title title='Popular posts' />
       {posts.map((post) => {
         return (
           <Post
