@@ -1,5 +1,5 @@
-import userIcon from '../../assets/icons//icons8-user-48.png';
-import heartIcon from '../../assets/icons/heart-3068.svg';
+import userIcon from '../../assets/icons/profile.svg';
+import heartIcon from '../../assets/icons/heart-line-icon.svg';
 import cameraIcon from '../../assets/icons/camera-svgrepo-com.svg';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -41,6 +41,11 @@ export default function Header() {
       setIsSignup(false);
       setIsLogin(false);
       setIsSearch(false);
+    } else {
+      setIsFeed(false);
+      setIsSignup(false);
+      setIsLogin(false);
+      setIsSearch(false);
     }
   }, [pathname]);
 
@@ -67,7 +72,19 @@ export default function Header() {
       {token && (
         <div className='header__section header__section--logo'>
           <img
-            className='header__icon header__icon--camera'
+            className={`header__icon header__icon--plane ${
+              isFeed ? 'header__icon--active' : ''
+            }`}
+            src={planeIcon}
+            alt='plane'
+            onClick={() => {
+              navigate('/feed');
+            }}
+          />
+          <img
+            className={`header__icon header__icon--camera ${
+              isFeed ? 'header__icon--active' : ''
+            }`}
             src={cameraIcon}
             alt='camera'
             onClick={() => {
@@ -75,12 +92,16 @@ export default function Header() {
             }}
           />
           <img
-            className='header__icon header__icon--heart'
+            className={`header__icon header__icon--heart ${
+              isFeed ? 'header__icon--active' : ''
+            }`}
             src={heartIcon}
             alt='heart'
           />
           <img
-            className='header__icon header__icon--profile'
+            className={`header__icon header__icon--profile ${
+              isFeed ? 'header__icon--active' : ''
+            }`}
             src={userIcon}
             alt='profile'
             onClick={() => {
@@ -91,16 +112,6 @@ export default function Header() {
       )}
       {!token && (
         <div className='header__section header__section--logo'>
-          <img
-            className={`header__icon header__icon--plane ${
-              isFeed ? 'header__icon--active' : ''
-            }`}
-            src={planeIcon}
-            alt='plane'
-            onClick={() => {
-              navigate('/feed');
-            }}
-          />
           <button
             className={`header__button header__button--signup ${
               isSignup ? 'header__button--active' : ''

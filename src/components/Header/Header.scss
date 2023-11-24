@@ -34,12 +34,13 @@
   }
   &__button {
     @include button;
-    height: 1.25rem;
-    font-size: 12px;
+    height: 1.3rem;
+    font-size: 14px;
     width: fit-content;
     padding: 0 8px;
     margin-left: 4px;
     background-color: white;
+    box-shadow: none;
     &:hover {
       background-color: $orange;
     }
@@ -58,25 +59,22 @@
     font-size: 1.25rem;
     color: white;
     &--orange {
-      color: $pumpkin;
+      color: $orange;
     }
   }
   &__icon {
-    height: 1.25rem;
+    height: 1.45rem;
     padding: 4px 8px;
     border-radius: 4px;
-    // margin: 0 8px;
-    &--plane {
-      background-color: white;
-      &:hover {
-        background-color: $orange;
-      }
+    margin-left: 4px;
+    // &--plane {
+    background-color: white;
+    &:hover {
+      background-color: $orange;
     }
-    &--heart {
-      height: 26px;
-    }
-    &--profile {
-      height: 28px;
+    // }
+    &--camera {
+      padding: 0 8px;
     }
   }
 }
