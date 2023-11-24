@@ -25,20 +25,28 @@
   }
   &__input {
     &--upload {
-      border: 1px solid #ccc;
       border-radius: 5px;
       display: flex;
       padding: 6px 12px;
       cursor: pointer;
-      height: 50px;
+      height: 45px;
       width: fit-content;
       margin-bottom: 1rem;
       align-items: center;
-      background-color: #bad4aa;
+      background-color: $yellow;
+      font-size: 14px;
+      box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+      &:hover {
+        background-color: $orange;
+      }
     }
   }
 }
 
 .disabled {
   @include disabled-button;
+}
+
+.uploaded {
+  background-color: $orange;
 }

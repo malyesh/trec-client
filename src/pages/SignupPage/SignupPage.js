@@ -137,10 +137,17 @@ export default function SignupPage() {
           placeholder='Enter password confirmation here'
         />
 
-        <label className='signup__label signup__input--upload'>
-          Upload photo!
-          <input type='file' name='image' onChange={handleFileChange} />
-        </label>
+        {!file ? (
+          <label className='signup__label signup__input--upload'>
+            upload photo
+            <input type='file' name='image' onChange={handleFileChange} />
+          </label>
+        ) : (
+          <label className='signup__label signup__input--upload uploaded'>
+            photo uploaded
+            <input type='file' name='image' onChange={handleFileChange} />
+          </label>
+        )}
 
         <button
           type='submit'
@@ -153,7 +160,7 @@ export default function SignupPage() {
       <p className='signup__login'>
         Already have an account?{' '}
         <Link className='signup__login--link' to='/login'>
-          Log in
+          log in
         </Link>
       </p>
     </div>

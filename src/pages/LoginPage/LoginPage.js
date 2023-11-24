@@ -40,7 +40,7 @@ export default function LoginPage() {
       setErrorMessage('');
 
       setTimeout(() => {
-        navigate('/home');
+        navigate('/');
       }, 1000);
     } catch (error) {
       setIsLoginError(true);
@@ -79,14 +79,14 @@ export default function LoginPage() {
           type='submit'
           className={`login__button ${disabled ? 'disabled' : ''}`}
         >
-          Log in!
+          log in!
         </button>
       </form>
 
       <p className='login__signup'>
         Need an account?{' '}
         <Link className='login__signup--link' to='/signup'>
-          Sign up
+          sign up
         </Link>
       </p>
     </div>
