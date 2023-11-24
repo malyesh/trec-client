@@ -1,13 +1,15 @@
 import './LandmarkFeedPage.scss';
 import Post from '../../components/Post/Post';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
+import planeIcon from '../../assets/icons/airplane-outline-svgrepo-com.svg';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function LandmarkFeedPage() {
   const [posts, setPosts] = useState();
   const { countryId, cityId, landmarkId } = useParams();
-
+  const navigate = useNavigate();
   const location = useLocation();
   const { name } = location.state;
 
@@ -27,30 +29,56 @@ export default function LandmarkFeedPage() {
   }, [apiBody, landmarkId]);
 
   if (!posts) return <h1>Loading...</h1>;
-  // console.log(posts);
+  console.log(posts);
 
   return (
-    <div>
-      {/* {/* <div className='header'> */}
-      <h1>{name}</h1>
-      {/* </div> */}
+    <div className='feed'>
+      <h2 className='feed__title'>
+        <img
+          src={arrowIcon}
+          alt='arrow'
+          className='feed__title--back'
+          onClick={() => {
+            navigate(-1);
+          }}
+        />
+        {`${name}`}
+      </h2>
 
-      <div>
+      <div className='feed__body'>
         {posts.length > 0 ? (
           posts.map((post) => {
             return (
               <Post
                 name={`${post.first_name} ${post.last_name}`}
                 key={post.id}
+                id={post.id}
                 landmark={post.landmark_name}
                 caption={post.caption}
                 rating={post.rating}
                 picture={post.picture}
+                date={post.created_at}
+                profile={post.profile}
               />
             );
           })
         ) : (
-          <h2>No posts here yet, be the first one to trec!</h2>
+          <div className='feed__container'>
+            <div className='feed__empty'>
+              <h3 className='feed__empty--title'>
+                No posts yet, be a trailblazer and create some for yourself!
+              </h3>
+              <img src={planeIcon} alt='plane' className='feed__empty--icon' />
+            </div>
+            <button
+              className='feed__empty--button'
+              onClick={() => {
+                navigate('/post');
+              }}
+            >
+              create a post
+            </button>
+          </div>
         )}
       </div>
     </div>

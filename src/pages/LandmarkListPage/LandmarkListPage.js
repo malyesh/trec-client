@@ -4,6 +4,7 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Landmark from '../../components/Landmark/Landmark';
+import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
 
 export default function LandmarkListPage() {
   const [landmarkList, setLandmarkList] = useState(null);
@@ -49,21 +50,28 @@ export default function LandmarkListPage() {
 
   return (
     <div className='list'>
-      {/* <div className='header'> */}
-      <h1 className='list__title'>{`${state.city.label}, ${state.country.label}`}</h1>
-      {/* </div> */}
+      <h2 className='list__title'>
+        <img
+          src={arrowIcon}
+          alt='arrow'
+          className='list__title--back'
+          onClick={() => {
+            navigate(-1);
+          }}
+        />
+        {`${state.city.label}, ${state.country.label}`}
+      </h2>
 
       <main className='list__body'>
-        <div>
-          <Dropdown
-            options={allLandmarks}
-            setSelectedElement={setSelectedLandmark}
-            value={selectedLandmark}
-            name='landmark'
-            id='landmark'
-            type='landmark'
-          />
-        </div>
+        <Dropdown
+          options={allLandmarks}
+          setSelectedElement={setSelectedLandmark}
+          value={selectedLandmark}
+          name='landmark'
+          id='landmark'
+          type='landmark'
+        />
+
         {landmarkList.map((landmark) => {
           return (
             <Landmark
