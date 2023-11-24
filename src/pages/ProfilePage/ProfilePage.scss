@@ -12,6 +12,9 @@
       width: 200px;
       border-radius: 50%;
       object-fit: cover;
+      &--default {
+        margin-top: 1rem;
+      }
     }
     &__name {
       padding: 1rem;

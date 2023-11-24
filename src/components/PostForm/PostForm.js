@@ -2,7 +2,7 @@ import Input from '../Input/Input';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './PostForm.scss';
 
 const initialValues = {
@@ -37,8 +37,6 @@ export default function PostForm({ id }) {
   const [disabled, setDisabled] = useState(true);
   const apiBody = process.env.REACT_APP_API_URL;
 
-  const location = useLocation();
-  const { state } = location;
   const navigate = useNavigate();
 
   const token = sessionStorage.getItem('token');
