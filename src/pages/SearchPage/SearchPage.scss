@@ -31,13 +31,25 @@
   }
   &__button {
     @include button;
+    &--feed {
+      // background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      // &:hover {
+      //   background-color: $pumpkin;
+      // }
+    }
+    &--icon {
+      transform: rotate(180deg);
+      height: 2rem;
+      position: relative;
+      top: -3px;
+    }
   }
 }
 
 .disabled {
   @include disabled-button;
 }
-
-// .posts-container {
-//   padding-top: 1rem;
-// }

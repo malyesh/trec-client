@@ -1,4 +1,5 @@
 import Dropdown from '../../components/Dropdown/Dropdown';
+import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -110,6 +111,17 @@ export default function SearchPage() {
             disabled={disabled}
           >
             search
+          </button>
+
+          <button
+            className='search__button search__button--feed'
+            type='click'
+            onClick={() => {
+              navigate('/feed');
+            }}
+          >
+            check out where everyone is going!
+            <img src={arrowIcon} alt='arrow' className='search__button--icon' />
           </button>
         </form>
       </div>
