@@ -2,54 +2,66 @@
 @use '../../styles/partials/colors' as *;
 
 .post {
-  padding: 1rem;
+  // padding: 1rem 0;
   position: relative;
-  overflow: hidden;
-  // &__picture {
-  //   height: 450px;
-  //   width: 100%;
-  //   object-fit: cover;
-  //   border-radius: 20px;
-  // }
-  // &__footer {
-  //   position: absolute;
-  //   background-color: rgba(255, 255, 255, 0.5);
-  //   top: 419px;
-  //   z-index: 1;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: space-between;
-  //   width: 100%;
-  //   padding-right: 2rem;
-  // }
-  // &__landmark {
-  //   font-weight: 600;
-  //   padding: 1rem;
-  //   text-transform: uppercase;
-  // }
+  &__profile {
+    display: flex;
+    position: relative;
+    &--image {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 3px solid white;
+      object-fit: cover;
+      position: absolute;
+      top: -5px;
+      left: 10px;
+    }
+    &--name {
+      position: relative;
+      left: 68px;
+      padding-bottom: 4px;
+    }
+  }
+  &__picture {
+    height: 420px;
+    width: 100%;
+    object-fit: cover;
+  }
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    bottom: 19px;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    &--section {
+      display: flex;
+      align-items: center;
+      padding-bottom: 5px;
+    }
+  }
+  &__landmark {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  &__caption {
+    text-align: start;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  &__like {
+    filter: invert(25%) sepia(99%) saturate(6670%) hue-rotate(357deg)
+      brightness(98%) contrast(115%);
+    height: 1rem;
+    margin-left: auto;
+    cursor: pointer;
+  }
   &__stars {
     display: flex;
-    padding: 1rem;
+    padding-left: 0.5rem;
     &--item {
       height: 1rem;
     }
   }
-  // &__title {
-  //   display: flex;
-  //   width: 100%;
-  //   justify-content: space-between;
-  //   text-align: left;
-  //   // flex-wrap: wrap;
-  //   padding-top: 0.5rem;
-  // }
-  // &__name {
-  //   // width: 30%;
-  //   text-transform: uppercase;
-  //   font-weight: 600;
-  //   font-size: 1rem;
-  // }
-  // &__caption {
-  //   line-height: 1.5rem;
-  //   // width: 70%;
-  // }
 }

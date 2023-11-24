@@ -212,10 +212,17 @@ export default function PostForm({ id }) {
           />
         </div>
 
-        <label className='post__label post__input--upload'>
-          Upload photo!
-          <input type='file' name='image' onChange={handleFileChange} />
-        </label>
+        {!file ? (
+          <label className='post__label post__input--upload'>
+            upload photo
+            <input type='file' name='image' onChange={handleFileChange} />
+          </label>
+        ) : (
+          <label className='post__label post__input--upload uploaded'>
+            photo uploaded
+            <input type='file' name='image' />
+          </label>
+        )}
       </div>
 
       <button

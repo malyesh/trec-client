@@ -1,0 +1,26 @@
+.post-page {
+  padding: 1rem;
+  padding-top: 2rem;
+  text-align: left;
+  &__title {
+    display: flex;
+    padding-bottom: 0.5rem;
+    &--back {
+      height: 2.5rem;
+      position: relative;
+      top: -6px;
+      padding-right: 4px;
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+  &__error {
+    padding: 2rem;
+    text-align: center;
+    &--title {
+      padding-bottom: 2rem;
+    }
+  }
+}
