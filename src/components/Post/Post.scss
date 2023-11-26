@@ -49,6 +49,7 @@
       display: flex;
       align-items: center;
       padding-bottom: 5px;
+      position: relative;
     }
   }
   &__landmark {
@@ -74,6 +75,14 @@
     height: 1rem;
     margin-left: auto;
     cursor: pointer;
+    &--error {
+      position: absolute;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 5px;
+      top: -60px;
+      right: -6px;
+    }
   }
   &__stars {
     display: flex;
@@ -82,4 +91,8 @@
       height: 1rem;
     }
   }
+}
+
+.hide {
+  display: none;
 }

@@ -19,6 +19,7 @@ export default function Post({
 }) {
   const [liked, setLiked] = useState(false);
   const [isImage, setIsImage] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const apiBody = process.env.REACT_APP_API_URL;
   const token = sessionStorage.getItem('token');
 
@@ -39,6 +40,7 @@ export default function Post({
       }
     };
     if (token) {
+      // setIsLoggedIn(true);
       isLiked();
     }
   }, [apiBody, id, token]);
@@ -70,20 +72,29 @@ export default function Post({
   }, [profile]);
 
   const handleLike = async () => {
-    const newFav = {
-      post_id: id,
-    };
-    try {
-      const response = await axios.post(`${apiBody}/favorites`, newFav, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(newFav);
-      console.log(response.data);
-      console.log('liked');
-      setLiked(true);
-    } catch (error) {}
+    if (token) {
+      const newFav = {
+        post_id: id,
+      };
+      try {
+        const response = await axios.post(`${apiBody}/favorites`, newFav, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(newFav);
+        console.log(response.data);
+        console.log('liked');
+        setLiked(true);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setIsVisible(true);
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -117,6 +128,9 @@ export default function Post({
             alt='heart'
             onClick={handleLike}
           />
+          <p className={`post__like--error ${isVisible ? '' : 'hide'} `}>
+            please log in to like this post!
+          </p>
         </div>
         <p className='post__caption'>{caption}</p>
       </div>
