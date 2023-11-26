@@ -3,6 +3,8 @@ import goldstar from '../../assets/icons/goldstar.svg';
 import greystar from '../../assets/icons/greystar.svg';
 import heartIcon from '../../assets/icons/heart-line-icon.svg';
 import solidIcon from '../../assets/icons/heart-line-icon-solid.svg';
+import profileIcon from '../../assets/icons/profile.svg';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -16,6 +18,7 @@ export default function Post({
   profile,
 }) {
   const [liked, setLiked] = useState(false);
+  const [isImage, setIsImage] = useState(false);
   const apiBody = process.env.REACT_APP_API_URL;
   const token = sessionStorage.getItem('token');
 
@@ -55,6 +58,17 @@ export default function Post({
     return starArray.map((star) => star);
   };
 
+  useEffect(() => {
+    const checkImage = () => {
+      if (profile === '') {
+        setIsImage(false);
+      } else {
+        setIsImage(true);
+      }
+    };
+    checkImage();
+  }, [profile]);
+
   const handleLike = async () => {
     const newFav = {
       post_id: id,
@@ -75,11 +89,21 @@ export default function Post({
   return (
     <div className='post'>
       <div className='post__profile'>
-        <img
-          className='post__profile--image'
-          src={`${apiBody}/${profile}`}
-          alt='profile'
-        />
+        {isImage && (
+          <img
+            className='post__profile--image'
+            src={`${apiBody}/${profile}`}
+            alt='profile'
+          />
+        )}
+        {!isImage && (
+          <img
+            className='post__profile--image post__profile--default'
+            src={profileIcon}
+            alt='profile'
+          />
+        )}
+
         <p className='post__profile--name'>{name}</p>
       </div>
       <img className='post__picture' src={`${apiBody}/${picture}`} alt='post' />
