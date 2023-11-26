@@ -3,14 +3,24 @@
 
 .title {
   display: flex;
-  padding: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
   &--back {
     height: 2.5rem;
     position: relative;
     top: -6px;
     padding-right: 4px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   @include tablet {
     padding: 1rem;
+    padding-top: 2rem;
+    border-bottom: 1px solid lightgray;
+  }
+  @include desktop {
+    padding: 2rem 0 1rem 0;
+    @include desktop-container;
   }
 }

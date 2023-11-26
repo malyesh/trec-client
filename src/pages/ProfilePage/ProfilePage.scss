@@ -14,6 +14,10 @@
       align-items: flex-end;
       border-bottom: 1px solid lightgrey;
     }
+    @include desktop {
+      padding: 1rem 0;
+      @include desktop-container;
+    }
     &__image {
       height: 200px;
       width: 200px;
@@ -45,6 +49,13 @@
     }
     &--logout {
       @include button;
+    }
+  }
+  &__posts {
+    &--user {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 }

@@ -22,6 +22,9 @@
     position: relative;
     top: -40px;
     z-index: 3;
+    @include desktop {
+      @include desktop-container;
+    }
   }
 
   &__dropdown {

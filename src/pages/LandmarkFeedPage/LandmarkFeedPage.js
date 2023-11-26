@@ -2,14 +2,13 @@ import './LandmarkFeedPage.scss';
 import Post from '../../components/Post/Post';
 import Title from '../../components/Title/Title';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import arrowIcon from '../../assets/icons/noun-chevron-713008.svg';
 import planeIcon from '../../assets/icons/airplane-outline-svgrepo-com.svg';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function LandmarkFeedPage() {
   const [posts, setPosts] = useState();
-  const { countryId, cityId, landmarkId } = useParams();
+  const { landmarkId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { name } = location.state;

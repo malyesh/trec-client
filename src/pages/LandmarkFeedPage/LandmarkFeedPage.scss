@@ -8,6 +8,7 @@
     flex-direction: column;
     @include tablet {
       align-items: center;
+      padding-top: 2rem;
     }
   }
   &__container {

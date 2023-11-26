@@ -13,6 +13,9 @@
       padding-right: 2rem;
       padding-left: 2rem;
     }
+    @include desktop {
+      @include desktop-container;
+    }
     &--container {
       @include tablet {
         display: flex;
@@ -25,7 +28,6 @@
       flex-direction: column;
       @include tablet {
         width: 47%;
-        // justify-content: space-between;
       }
     }
   }
@@ -39,7 +41,7 @@
     margin-bottom: 1rem;
 
     &--rating {
-      width: 50px;
+      width: 60px;
     }
     &__label {
       margin-bottom: 8px;
