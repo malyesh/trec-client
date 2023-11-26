@@ -36,7 +36,8 @@
       height: 50vh;
     }
     @include desktop {
-      // height: 60vh;
+      height: 65vh;
+      background-position: 0% 20%;
     }
   }
   &__text {
