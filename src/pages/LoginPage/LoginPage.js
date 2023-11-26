@@ -58,29 +58,34 @@ export default function LoginPage() {
 
       {isLoginError && <label className='error'>{errorMessage}</label>}
       <form onSubmit={handleLogin} className='login__form'>
-        <Input
-          label='Email'
-          name='email'
-          type='text'
-          value={email}
-          onChange={handleChangeEmail}
-          placeholder='Enter email here'
-        />
-        <Input
-          label='Password'
-          name='password'
-          type='password'
-          value={password}
-          onChange={handleChangePassword}
-          placeholder='Enter password here'
-        />
-
-        <button
-          type='submit'
-          className={`login__button ${disabled ? 'disabled' : ''}`}
-        >
-          log in!
-        </button>
+        <div className='login__form--input'>
+          <Input
+            label='Email'
+            name='email'
+            type='text'
+            value={email}
+            onChange={handleChangeEmail}
+            placeholder='Enter email here'
+          />
+        </div>
+        <div className='login__form--input'>
+          <Input
+            label='Password'
+            name='password'
+            type='password'
+            value={password}
+            onChange={handleChangePassword}
+            placeholder='Enter password here'
+          />
+        </div>
+        <div className='login__button--container'>
+          <button
+            type='submit'
+            className={`login__button ${disabled ? 'disabled' : ''}`}
+          >
+            log in!
+          </button>
+        </div>
       </form>
 
       <p className='login__signup'>

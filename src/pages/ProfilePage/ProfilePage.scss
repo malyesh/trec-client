@@ -7,19 +7,42 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @include tablet {
+      padding: 1rem 2rem;
+      flex-direction: row;
+      margin-bottom: 2rem;
+      align-items: flex-end;
+      border-bottom: 1px solid lightgrey;
+    }
     &__image {
       height: 200px;
       width: 200px;
       border-radius: 50%;
       object-fit: cover;
+      @include tablet {
+        height: 150px;
+        width: 150px;
+      }
     }
     &__name {
       padding: 1rem;
     }
+    &__bottom {
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 1.5rem;
+      }
+    }
   }
   &__button {
-    padding: 0 2rem;
     margin-bottom: 2rem;
+    width: 100%;
+    @include tablet {
+      width: 18.025rem;
+      margin-bottom: 0;
+    }
     &--logout {
       @include button;
     }

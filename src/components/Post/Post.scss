@@ -1,9 +1,12 @@
 @use '../../styles/partials/globals' as *;
 @use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
 
 .post {
-  // padding: 1rem 0;
   position: relative;
+  @include tablet {
+    width: 475px;
+  }
   &__profile {
     display: flex;
     position: relative;
@@ -21,12 +24,16 @@
       position: relative;
       left: 68px;
       padding-bottom: 4px;
+      font-weight: 700;
     }
   }
   &__picture {
     height: 420px;
     width: 100%;
     object-fit: cover;
+    @include tablet {
+      height: 450px;
+    }
   }
   &__footer {
     display: flex;
@@ -44,11 +51,18 @@
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
+    @include tablet {
+      font-size: 1rem;
+    }
   }
   &__caption {
     text-align: start;
     font-size: 14px;
     font-weight: 600;
+    @include tablet {
+      font-size: 1rem;
+      line-height: 1.25rem;
+    }
   }
   &__like {
     filter: invert(25%) sepia(99%) saturate(6670%) hue-rotate(357deg)

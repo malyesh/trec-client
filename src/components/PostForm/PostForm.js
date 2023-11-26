@@ -155,82 +155,92 @@ export default function PostForm({ id }) {
       onSubmit={handleSubmit}
       encType='multipart/form-data'
     >
-      <label className='post__label' htmlFor='country'>
-        Country
-      </label>
-      <Dropdown
-        options={countries}
-        setSelectedElement={setSelectedCountry}
-        value={selectedCountry}
-        name='country'
-        id='country'
-        type='country'
-      />
-      <label className='post__label' htmlFor='city'>
-        City
-      </label>
-      <Dropdown
-        options={cities}
-        setSelectedElement={setSelectedCity}
-        value={selectedCity}
-        name='city'
-        id='city'
-        type='city'
-      />
-      <label className='post__label' htmlFor='landmark'>
-        Landmark
-      </label>
-      <Dropdown
-        options={landmarks}
-        setSelectedElement={setSelectedLandmark}
-        value={selectedLandmark}
-        name='landmark'
-        id='landmark'
-        type='landmark'
-      />
-
-      <Input
-        label='Caption'
-        name='caption'
-        type='text'
-        placeholder='What did you think?'
-        value={values.caption}
-        onChange={handleInputChange}
-      />
-
-      <div className='post__input--bottom'>
-        <div className='post__input--rating'>
-          <Input
-            label='Rating'
-            name='rating'
-            type='number'
-            placeholder='x / 5'
-            min='1'
-            max='5'
-            value={values.rating}
-            onChange={handleInputChange}
+      <div className='post__form--container'>
+        <section className='post__form--section'>
+          <label className='post__label' htmlFor='country'>
+            Country
+          </label>
+          <Dropdown
+            options={countries}
+            setSelectedElement={setSelectedCountry}
+            value={selectedCountry}
+            name='country'
+            id='country'
+            type='country'
           />
-        </div>
+          <label className='post__label' htmlFor='city'>
+            City
+          </label>
+          <Dropdown
+            options={cities}
+            setSelectedElement={setSelectedCity}
+            value={selectedCity}
+            name='city'
+            id='city'
+            type='city'
+          />
+          <label className='post__label' htmlFor='landmark'>
+            Landmark
+          </label>
+          <Dropdown
+            options={landmarks}
+            setSelectedElement={setSelectedLandmark}
+            value={selectedLandmark}
+            name='landmark'
+            id='landmark'
+            type='landmark'
+          />
+        </section>
 
-        {!file ? (
-          <label className='post__label post__input--upload'>
-            upload photo
-            <input type='file' name='image' onChange={handleFileChange} />
-          </label>
-        ) : (
-          <label className='post__label post__input--upload uploaded'>
-            photo uploaded
-            <input type='file' name='image' />
-          </label>
-        )}
+        <section className='post__form--section'>
+          <div className='post__input'>
+            <Input
+              label='Caption'
+              name='caption'
+              type='text'
+              placeholder='What did you think?'
+              value={values.caption}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className='post__input--bottom'>
+            <div className='post__input post__input--rating'>
+              <Input
+                label='Rating'
+                name='rating'
+                type='number'
+                placeholder='x / 5'
+                min='1'
+                max='5'
+                value={values.rating}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            {!file ? (
+              <label className='post__label post__input--upload'>
+                upload photo
+                <input type='file' name='image' onChange={handleFileChange} />
+              </label>
+            ) : (
+              <label className='post__label post__input--upload uploaded'>
+                photo uploaded
+                <input type='file' name='image' />
+              </label>
+            )}
+          </div>
+        </section>
       </div>
 
-      <button
-        className={`post__button ${disabled ? 'disabled' : ''}`}
-        type='submit'
-      >
-        Create Post
-      </button>
+      <div className='post__button--container'>
+        <button
+          className={`post__button ${disabled ? 'disabled' : ''}`}
+          type='submit'
+        >
+          Create Post
+        </button>
+      </div>
     </form>
   );
 }

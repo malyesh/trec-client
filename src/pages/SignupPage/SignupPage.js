@@ -56,9 +56,11 @@ export default function SignupPage() {
           navigate('/login');
         }, 2000);
       } else {
-        console.log('passwords dont match!');
+        setError('Passwords need to match!');
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -78,6 +80,7 @@ export default function SignupPage() {
       values.confirm_password !== ''
     ) {
       setDisabled(false);
+      // setError(true);
     }
   }, [values]);
 
@@ -88,73 +91,99 @@ export default function SignupPage() {
       <form
         onSubmit={handleSignup}
         encType='multipart/form-data'
-        className='signup__form'
+        className='form'
       >
         {success && (
           <div className='signup__message signup__message--success'>
             Sign up successful!
           </div>
         )}
+        <div className='signup__form'>
+          <div className='signup__form--section'>
+            <div className='signup__form--input'>
+              <Input
+                label='First Name'
+                name='first_name'
+                type='text'
+                value={values.first_name}
+                onChange={handleInputChange}
+                placeholder='Enter first name here'
+              />
+            </div>
+            <div className='signup__form--input'>
+              <Input
+                label='Last Name'
+                name='last_name'
+                type='text'
+                value={values.last_name}
+                onChange={handleInputChange}
+                placeholder='Enter last name here'
+              />
+            </div>
+            <div className='signup__form--input'>
+              <Input
+                label='Email'
+                name='email'
+                type='text'
+                value={values.email}
+                onChange={handleInputChange}
+                placeholder='Enter email here'
+              />
+            </div>
+          </div>
+          <div className='signup__form--section'>
+            <div className='signup__form--input'>
+              <Input
+                label='Password'
+                name='password'
+                type='password'
+                value={values.password}
+                onChange={handleInputChange}
+                placeholder='Enter password here'
+              />
+              {error && (
+                <p className='signup__message signup__message--error'>
+                  {error}
+                </p>
+              )}
+            </div>
+            <div className='signup__form--input'>
+              <Input
+                label='Confirm Password'
+                name='confirm_password'
+                type='password'
+                value={values.confirm_password}
+                onChange={handleInputChange}
+                placeholder='Enter password confirmation here'
+              />
+              {error && (
+                <p className='signup__message signup__message--error'>
+                  {error}
+                </p>
+              )}
+            </div>
+            {!file ? (
+              <label className='signup__label signup__input--upload'>
+                upload photo
+                <input type='file' name='image' onChange={handleFileChange} />
+              </label>
+            ) : (
+              <label className='signup__label signup__input--upload uploaded'>
+                photo uploaded
+                <input type='file' name='image' onChange={handleFileChange} />
+              </label>
+            )}
+          </div>
+        </div>
 
-        <Input
-          label='First Name'
-          name='first_name'
-          type='text'
-          value={values.first_name}
-          onChange={handleInputChange}
-          placeholder='Enter first name here'
-        />
-        <Input
-          label='Last Name'
-          name='last_name'
-          type='text'
-          value={values.last_name}
-          onChange={handleInputChange}
-          placeholder='Enter last name here'
-        />
-        <Input
-          label='Email'
-          name='email'
-          type='text'
-          value={values.email}
-          onChange={handleInputChange}
-          placeholder='Enter email here'
-        />
-        <Input
-          label='Password'
-          name='password'
-          type='password'
-          value={values.password}
-          onChange={handleInputChange}
-          placeholder='Enter password here'
-        />
-        <Input
-          label='Confirm Password'
-          name='confirm_password'
-          type='password'
-          value={values.confirm_password}
-          onChange={handleInputChange}
-          placeholder='Enter password confirmation here'
-        />
-
-        {!file ? (
-          <label className='signup__label signup__input--upload'>
-            upload photo
-            <input type='file' name='image' onChange={handleFileChange} />
-          </label>
-        ) : (
-          <label className='signup__label signup__input--upload uploaded'>
-            photo uploaded
-            <input type='file' name='image' onChange={handleFileChange} />
-          </label>
-        )}
-
-        <button
-          type='submit'
-          className={`signup__button ${disabled ? 'disabled' : ''}`}
-        >
-          sign up!
-        </button>
+        <div className='signup__button--container'>
+          <button
+            type='submit'
+            className={`signup__button ${disabled ? 'disabled' : ''}`}
+          >
+            sign up!
+          </button>
+        </div>
       </form>
 
       <p className='signup__login'>

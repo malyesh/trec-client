@@ -85,20 +85,22 @@ export default function ProfilePage() {
           />
         )}
 
-        <h1 className='profile-header__name'>
-          {userInfo.first_name} {userInfo.last_name}
-        </h1>
+        <div className='profile-header__bottom'>
+          <h1 className='profile-header__name'>
+            {userInfo.first_name} {userInfo.last_name}
+          </h1>
+          <div className='profile__button'>
+            <button
+              className='profile__button--logout'
+              type='click'
+              onClick={handleLogout}
+            >
+              log out?
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className='profile__button'>
-        <button
-          className='profile__button--logout'
-          type='click'
-          onClick={handleLogout}
-        >
-          log out?
-        </button>
-      </div>
       <div>
         {allPosts.map((post) => {
           return (

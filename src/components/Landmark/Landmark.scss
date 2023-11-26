@@ -1,5 +1,6 @@
 @use '../../styles/partials/globals' as *;
 @use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
 
 .card {
   text-decoration: none;
@@ -23,5 +24,11 @@
   &__info {
     padding-left: 1rem;
     font-size: 14px;
+  }
+  @include tablet {
+    width: 47%;
+    margin-bottom: 1rem;
+    // padding: 2rem;
+    height: 100px;
   }
 }

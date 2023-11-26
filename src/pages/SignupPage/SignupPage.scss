@@ -6,11 +6,24 @@
 .signup {
   padding: 1rem;
   text-align: left;
+  @include tablet {
+    padding: 1rem 2rem;
+  }
   &__title {
     padding-bottom: 2rem;
   }
   &__button {
     @include button;
+    @include tablet {
+      font-size: 1rem;
+      width: 127px;
+    }
+    &--container {
+      @include tablet {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
   &__login {
     display: flex;
@@ -39,6 +52,36 @@
       &:hover {
         background-color: $orange;
       }
+      @include tablet {
+        font-size: 1rem;
+        margin-top: auto;
+        margin-bottom: 1rem;
+        height: 50px;
+      }
+    }
+  }
+  &__form {
+    &--input {
+      margin-bottom: 1rem;
+    }
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+    }
+    &--section {
+      display: flex;
+      flex-direction: column;
+      @include tablet {
+        width: 47%;
+      }
+    }
+  }
+  &__message {
+    font-size: 14px;
+
+    &--error {
+      color: red;
+      margin-top: 8px;
     }
   }
 }

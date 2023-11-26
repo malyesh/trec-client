@@ -79,50 +79,58 @@ export default function SearchPage() {
     <div>
       <div className='search'>
         <form className='search__form' onSubmit={handleSubmit}>
-          <div className='search__dropdown'>
-            <Dropdown
-              options={allCountries}
-              setSelectedElement={setSelectedCountry}
-              value={selectedCountry}
-              name='country'
-              id='country'
-              type='country'
-            />
+          <div className='search__dropdown--container'>
+            <div className='search__dropdown'>
+              <Dropdown
+                options={allCountries}
+                setSelectedElement={setSelectedCountry}
+                value={selectedCountry}
+                name='country'
+                id='country'
+                type='country'
+              />
+            </div>
+
+            <div className={`search__dropdown ${allCities ? 'show' : 'hide'}`}>
+              {allCities && (
+                <>
+                  <Dropdown
+                    options={allCities}
+                    setSelectedElement={setSelectedCity}
+                    value={selectedCity}
+                    name='city'
+                    id='city'
+                    type='city'
+                  />
+                </>
+              )}
+            </div>
           </div>
 
-          <div className={`search__dropdown ${allCities ? 'show' : 'hide'}`}>
-            {allCities && (
-              <>
-                <Dropdown
-                  options={allCities}
-                  setSelectedElement={setSelectedCity}
-                  value={selectedCity}
-                  name='city'
-                  id='city'
-                  type='city'
-                />
-              </>
-            )}
+          <div className='search__button--container'>
+            <button
+              className={`search__button ${disabled ? 'disabled' : ''}`}
+              type='submit'
+              disabled={disabled}
+            >
+              search
+            </button>
+
+            <button
+              className='search__button search__button--feed'
+              type='click'
+              onClick={() => {
+                navigate('/feed');
+              }}
+            >
+              popular posts!
+              <img
+                src={arrowIcon}
+                alt='arrow'
+                className='search__button--icon'
+              />
+            </button>
           </div>
-
-          <button
-            className={`search__button ${disabled ? 'disabled' : ''}`}
-            type='submit'
-            disabled={disabled}
-          >
-            search
-          </button>
-
-          <button
-            className='search__button search__button--feed'
-            type='click'
-            onClick={() => {
-              navigate('/feed');
-            }}
-          >
-            check out where everyone is going!
-            <img src={arrowIcon} alt='arrow' className='search__button--icon' />
-          </button>
         </form>
       </div>
     </div>

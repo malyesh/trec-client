@@ -61,14 +61,16 @@ export default function LandmarkFeedPage() {
               </h3>
               <img src={planeIcon} alt='plane' className='feed__empty--icon' />
             </div>
-            <button
-              className='feed__empty--button'
-              onClick={() => {
-                navigate('/post');
-              }}
-            >
-              create a post
-            </button>
+            <div className='feed__empty--button-container'>
+              <button
+                className='feed__empty--button'
+                onClick={() => {
+                  navigate('/post');
+                }}
+              >
+                create a post
+              </button>
+            </div>
           </div>
         )}
       </div>

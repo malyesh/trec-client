@@ -62,17 +62,19 @@ export default function LandmarkListPage() {
           type='landmark'
         />
 
-        {landmarkList.map((landmark) => {
-          return (
-            <Landmark
-              key={landmark.id}
-              id={landmark.id}
-              name={landmark.landmark_name}
-              country={state.country}
-              city={state.city}
-            />
-          );
-        })}
+        <section className='list__container'>
+          {landmarkList.map((landmark) => {
+            return (
+              <Landmark
+                key={landmark.id}
+                id={landmark.id}
+                name={landmark.landmark_name}
+                country={state.country}
+                city={state.city}
+              />
+            );
+          })}
+        </section>
       </main>
     </div>
   );

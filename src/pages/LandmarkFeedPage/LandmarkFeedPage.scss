@@ -6,6 +6,9 @@
   &__body {
     display: flex;
     flex-direction: column;
+    @include tablet {
+      align-items: center;
+    }
   }
   &__container {
     padding: 2rem;
@@ -15,14 +18,27 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 2rem;
+    justify-content: center;
     &--title {
       width: 60%;
+      @include tablet {
+        font-size: 1.5rem;
+      }
     }
     &--icon {
       height: 5rem;
     }
     &--button {
       @include button;
+      @include tablet {
+        width: 200px;
+      }
+      &-container {
+        @include tablet {
+          display: flex;
+          justify-content: center;
+        }
+      }
     }
   }
 }

@@ -33,6 +33,9 @@ h3 {
   height: 45px;
   text-align: start;
   font-size: 14px;
+  @include tablet {
+    height: 50px;
+  }
 }
 
 .css-b62m3t-container {

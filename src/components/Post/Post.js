@@ -35,7 +35,9 @@ export default function Post({
         console.log(error);
       }
     };
-    isLiked();
+    if (token) {
+      isLiked();
+    }
   }, [apiBody, id, token]);
 
   const renderStars = () => {

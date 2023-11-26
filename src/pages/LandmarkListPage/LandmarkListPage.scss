@@ -1,11 +1,22 @@
 @use '../../styles/partials/globals' as *;
+@use '../../styles/partials/mixins' as *;
 
 .list {
   text-align: left;
   &__body {
-    padding: 1rem;
-    // padding-top: 0;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
+    @include tablet {
+      padding: 0 2rem;
+    }
+  }
+  &__container {
+    @include tablet {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding-top: 1rem;
+    }
   }
 }

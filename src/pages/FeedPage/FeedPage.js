@@ -23,21 +23,23 @@ export default function FeedPage() {
   return (
     <div className='feed'>
       <Title title='Popular posts' />
-      {posts.map((post) => {
-        return (
-          <Post
-            name={`${post.first_name} ${post.last_name}`}
-            key={post.id}
-            id={post.id}
-            landmark={post.landmark_name}
-            caption={post.caption}
-            rating={post.rating}
-            picture={post.picture}
-            date={post.created_at}
-            profile={post.profile}
-          />
-        );
-      })}
+      <section className='feed__posts'>
+        {posts.map((post) => {
+          return (
+            <Post
+              name={`${post.first_name} ${post.last_name}`}
+              key={post.id}
+              id={post.id}
+              landmark={post.landmark_name}
+              caption={post.caption}
+              rating={post.rating}
+              picture={post.picture}
+              date={post.created_at}
+              profile={post.profile}
+            />
+          );
+        })}
+      </section>
     </div>
   );
 }

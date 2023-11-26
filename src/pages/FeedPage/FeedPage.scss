@@ -5,4 +5,11 @@
 
 .feed {
   text-align: left;
+  &__posts {
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }
