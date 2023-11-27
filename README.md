@@ -10,107 +10,32 @@ An application where users post reccomendations for specific tourist attractions
 
 Researching for travel can get very confusing and its mostly just long-winded blogs or paid-for tour groups advertising. With this app, public opinion for each of the places a person would want to travel to is in one place and can even show them somewhere they didn't think to go before!
 
-## User Profile
+## My Solution and Features
 
-Two kinds of users will use this application
+I created an application where users can post travel landmark photos in a social media style while giving real tips, recommendations, and ratings to those locations. Other users are able to browse these posts, favorite the ones that may be helpful for an upcoming trip, and can use these recommendations to guide their itinerary creation! Users can view a feed of all posts to gain ideas, or choose to look at the post feed of one specific landmark. They can also view their own posts on their profile page. A user does not need to be logged in to browse the posts, but must be logged in in order to create posts and to favorite posts.
 
-- People who like to travel and have a lot of insights on many of the cities and landmarks
-- People who have a hard time sifting through research before a big trip.
+This process consolidates the research that a traveler would need to do when creating an itinerary and deciding where they should go, how much time to spend there, and what is worth the wait.
 
-## Features
+I hope you find this helpful too!
 
-- search for country and city
-- render a list of all the landmarks and tourist attractions in that city to pick from
-- view all posts in that landmark category
-- create a post - upload a picture, rating, comment
+## Tech Stack and Libraries
 
-## Implementation
+- HTML/SCSS
+- React
+- Node + Express
+- Axios
+- MySQL + Knex
+- react-select library
+- jsonwebtoken and bcrypt libraries
+- busboy library
 
-### Tech Stack
+## How to Install
 
-HTML/SCSS, React, Node, Express, Axios, MySQL, Knex, react-select library
+Install the dependencies and start the client side React app
 
-### APIs
+```sh
+npm i
+npm start
+```
 
-Country names and their cities API
-Create my own user and post tables in database
-
-### Sitemap
-
-- home page / search page - where the user searches for the country and city (drop down)
-- landmark list page - all the landmarks for that city show up and are links to a ->
-- landmark page - all the posts for that landmark are rendered here
-- create post page - where the user can upload info to post to a landmark page
-
-### Mockups
-
-![pic1](https://github.com/malyesh/trec-client/assets/74512928/346fb558-0ca2-4bc8-9b59-d5c40f796b02) ![pic2](https://github.com/malyesh/trec-client/assets/74512928/aa1283d2-11d2-4537-8d63-2d6c4094c092)
-![pic4](https://github.com/malyesh/trec-client/assets/74512928/19cb1d80-09a7-4e2c-a33e-cab53a4291ce)
-
-![pic5](https://github.com/malyesh/trec-client/assets/74512928/ca63dad2-4ce0-4905-99bb-3e463f64766d) ![pic6](https://github.com/malyesh/trec-client/assets/74512928/31b1be56-550c-4a17-9eba-7e25e5af94bd)
-![pic8](https://github.com/malyesh/trec-client/assets/74512928/4bd76f69-e654-4b1e-a979-6395b52c2faf)
-
-### Data
-
-Have an API that provides country data with the cities in it
-Create a database with three tables -
-| Landmark | |
-| ------ | ------ |
-| id | primary key |
-| country | |
-| city | |
-| name | |
-
-| User     |             |
-| -------- | ----------- |
-| id       | primary key |
-| name     |             |
-| email    |             |
-| password |             |
-
-| Post        |              |
-| ----------- | ------------ |
-| id          | primary key  |
-| landmark_id | foreign key  |
-| user_id     | foreign key  |
-| image url   |              |
-| caption     |              |
-| rating      |              |
-| favorite    | boolean flag |
-
-### Endpoints
-
-- get /countries => all countries from api
-- get /countries/:country/cities => cities from that country
-- get /landmarks/:country/:city/landmarks => from database to get all the landmark options in that country, city
-- get /landmarks/:landmark => all posts from that landmark
-- post /user/posts => post to a specific landmark
-- get /user => (nice to have) all info about the specific user for profile page
-- get /user/post => (nice to have) all the posts made by the user
-- put /post => (nice to have) user to favorite someone's post
-- get /post => (nice to have) all posts to scroll through
-
-### Auth
-
-I would like to have authorization implemented, as we have not learned it yet, I don't know how complicated it will be to implement in the limited time we will have after learning. But ideally, this application does depend on user login.
-
-## Roadmap
-
-| Phases | Task                                                                                                        |
-| ------ | ----------------------------------------------------------------------------------------------------------- |
-| 1      | design wireframes and database, find API                                                                    |
-| 2      | build out pages with HTML and scss, populate db with data, connect to API                                   |
-| 3      | functionality for home/search page - calling API to get country and city - linked to the Landmark list page |
-| 4      | functionality for landmark list page - render landmarks from db as cards that link to Landmark feed page    |
-| 5      | functionality for landmark feed page - render posts from db for that landmark                               |
-| 6      | functionality for create post page - form to add a post to the db                                           |
-| 7      | profile page with user posts                                                                                |
-
-## Nice-to-haves
-
-- hidden gems - when the landmark page renders the list of landmarks, it will also have a section for "hidden gems" -> users can post to a separate section of the not commonly known attractions
-- star/favorite posts so that they can easily access at a later time on the user's page
-- patch /users/posts/:post => like a post
-- real upload image functionality rather than default image used for new posts
-- have a user profile page to view user information and favorited post
-- have a section on homepage to just scroll through all posts
+## How to Use
