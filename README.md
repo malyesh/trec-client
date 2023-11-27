@@ -20,14 +20,12 @@ I hope you find this helpful too!
 
 ## Technologies Used
 
-- HTML/SCSS
+- HTML
+- SCSS
 - React
-- Node + Express
 - Axios
-- MySQL + Knex
 - react-select library
-- jsonwebtoken and bcrypt libraries
-- busboy library
+- reactjs-popup
 
 ## Features
 
