@@ -56,6 +56,13 @@ npm i
 npm start
 ```
 
+To test login and view from an authenticated user account with posts
+
+```bash
+login -> ma@gmail.com
+password -> password
+```
+
 ## Preview
 
 home page
