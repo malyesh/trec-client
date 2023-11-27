@@ -49,10 +49,6 @@ export default function PostForm({ id }) {
     });
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
   useEffect(() => {
     const getAllCountries = async () => {
       const response = await axios.get(`${apiBody}/countries`);
@@ -111,10 +107,17 @@ export default function PostForm({ id }) {
     if (
       selectedLandmark !== '' &&
       values.rating !== '' &&
-      values.caption !== ''
-    )
+      values.caption !== '' &&
+      !disabled
+    ) {
       setDisabled(false);
-  }, [selectedLandmark, values]);
+    }
+  }, [selectedLandmark, values, disabled]);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setDisabled(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,16 +129,13 @@ export default function PostForm({ id }) {
       picture: file,
     };
 
-    console.log(newPost);
-
     try {
-      const response = await axios.post(`${apiBody}/posts/create`, newPost, {
+      await axios.post(`${apiBody}/posts/create`, newPost, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(response.data);
       navigate(
         `/${selectedCountry.id}/${selectedCity.id}/${selectedLandmark.id}`,
         {

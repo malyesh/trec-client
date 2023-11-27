@@ -31,7 +31,6 @@ export default function Post({
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data.length);
         if (response.data.length !== 0) {
           setLiked(true);
         }
@@ -40,7 +39,6 @@ export default function Post({
       }
     };
     if (token) {
-      // setIsLoggedIn(true);
       isLiked();
     }
   }, [apiBody, id, token]);
@@ -77,14 +75,11 @@ export default function Post({
         post_id: id,
       };
       try {
-        const response = await axios.post(`${apiBody}/favorites`, newFav, {
+        await axios.post(`${apiBody}/favorites`, newFav, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(newFav);
-        console.log(response.data);
-        console.log('liked');
         setLiked(true);
       } catch (error) {
         console.log(error);

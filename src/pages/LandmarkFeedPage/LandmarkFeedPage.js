@@ -19,7 +19,6 @@ export default function LandmarkFeedPage() {
     try {
       const getPosts = async () => {
         const allPosts = await axios.get(`${apiBody}/landmarks/${landmarkId}`);
-        console.log(allPosts.data);
         setPosts(allPosts.data);
       };
       getPosts();
@@ -29,7 +28,6 @@ export default function LandmarkFeedPage() {
   }, [apiBody, landmarkId]);
 
   if (!posts) return <h1>Loading...</h1>;
-  console.log(posts);
 
   return (
     <div className='feed'>
@@ -39,17 +37,19 @@ export default function LandmarkFeedPage() {
         {posts.length > 0 ? (
           posts.map((post) => {
             return (
-              <Post
-                name={`${post.first_name} ${post.last_name}`}
-                key={post.id}
-                id={post.id}
-                landmark={post.landmark_name}
-                caption={post.caption}
-                rating={post.rating}
-                picture={post.picture}
-                date={post.created_at}
-                profile={post.profile}
-              />
+              <div className='feed__body--item'>
+                <Post
+                  name={`${post.first_name} ${post.last_name}`}
+                  key={post.id}
+                  id={post.id}
+                  landmark={post.landmark_name}
+                  caption={post.caption}
+                  rating={post.rating}
+                  picture={post.picture}
+                  date={post.created_at}
+                  profile={post.profile}
+                />
+              </div>
             );
           })
         ) : (

@@ -15,7 +15,6 @@ export default function PostPage() {
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
-    console.log(token);
 
     if (!token) {
       setFailedAuth(true);
@@ -28,7 +27,6 @@ export default function PostPage() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(res);
         setUser(res.data);
       } catch (error) {
         setFailedAuth(true);

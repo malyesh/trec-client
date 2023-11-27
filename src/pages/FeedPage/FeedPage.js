@@ -13,7 +13,6 @@ export default function FeedPage() {
     const getAllPosts = async () => {
       const response = await axios.get(`${apiBody}/posts`);
       setPosts(response.data);
-      console.log(response.data);
     };
     getAllPosts();
   }, [apiBody]);
@@ -26,17 +25,19 @@ export default function FeedPage() {
       <section className='feed__posts'>
         {posts.map((post) => {
           return (
-            <Post
-              name={`${post.first_name} ${post.last_name}`}
-              key={post.id}
-              id={post.id}
-              landmark={post.landmark_name}
-              caption={post.caption}
-              rating={post.rating}
-              picture={post.picture}
-              date={post.created_at}
-              profile={post.profile}
-            />
+            <div className='feed__posts--item'>
+              <Post
+                name={`${post.first_name} ${post.last_name}`}
+                key={post.id}
+                id={post.id}
+                landmark={post.landmark_name}
+                caption={post.caption}
+                rating={post.rating}
+                picture={post.picture}
+                date={post.created_at}
+                profile={post.profile}
+              />
+            </div>
           );
         })}
       </section>

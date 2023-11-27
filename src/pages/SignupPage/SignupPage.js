@@ -39,14 +39,12 @@ export default function SignupPage() {
           password: values.password,
           picture: file,
         };
-        console.log(userInput);
 
-        const response = await axios.post(`${apiBody}/user/signup`, userInput, {
+        await axios.post(`${apiBody}/user/signup`, userInput, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
-        console.log(response.data);
         setSuccess(true);
         setError('');
         event.target.reset();
@@ -80,7 +78,6 @@ export default function SignupPage() {
       values.confirm_password !== ''
     ) {
       setDisabled(false);
-      // setError(true);
     }
   }, [values]);
 

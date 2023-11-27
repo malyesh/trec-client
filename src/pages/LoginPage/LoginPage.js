@@ -7,7 +7,6 @@ import './LoginPage.scss';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -31,7 +30,6 @@ export default function LoginPage() {
         email: email,
         password: password,
       });
-      console.log(response.data);
 
       let token = response.data.token;
 

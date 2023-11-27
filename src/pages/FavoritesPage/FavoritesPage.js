@@ -33,17 +33,19 @@ export default function FavoritesPage() {
         ) : (
           favorites.map((post) => {
             return (
-              <Post
-                name={`${post.first_name} ${post.last_name}`}
-                key={post.id}
-                id={post.id}
-                landmark={post.landmark_name}
-                caption={post.caption}
-                rating={post.rating}
-                picture={post.picture}
-                date={post.created_at}
-                profile={post.profile}
-              />
+              <div className='favorites--item'>
+                <Post
+                  name={`${post.first_name} ${post.last_name}`}
+                  key={post.id}
+                  id={post.id}
+                  landmark={post.landmark_name}
+                  caption={post.caption}
+                  rating={post.rating}
+                  picture={post.picture}
+                  date={post.created_at}
+                  profile={post.profile}
+                />
+              </div>
             );
           })
         )}

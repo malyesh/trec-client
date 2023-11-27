@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import profileIcon from '../../assets/icons/profile.svg';
 import axios from 'axios';
-import Post from '../../components/Post/Post';
+import PostModal from '../../components/PostModal/PostModal';
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,6 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const login = async () => {
-      console.log(token);
       const response = await axios.get(`${apiBody}/user`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -62,7 +61,6 @@ export default function ProfilePage() {
   };
 
   if (!token) {
-    console.log('here');
     return <Navigate to='/login' />;
   }
   if (isLoading || !allPosts) return <h1>Loading...</h1>;
@@ -101,20 +99,12 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className='profile__posts--user'>
+      <div className='profile__container'>
         {allPosts.map((post) => {
           return (
-            <Post
-              name={`${post.first_name} ${post.last_name}`}
-              key={post.id}
-              id={post.id}
-              landmark={post.landmark_name}
-              caption={post.caption}
-              rating={post.rating}
-              picture={post.picture}
-              date={post.created_at}
-              profile={post.profile}
-            />
+            <div className='profile__post' key={post.id}>
+              <PostModal post={post} />
+            </div>
           );
         })}
       </div>

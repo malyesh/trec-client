@@ -1,6 +1,6 @@
 import cameraIcon from '../../assets/icons/camera-svgrepo-com.svg';
 import heartIcon from '../../assets/icons/heart-3068.svg';
-import userIcon from '../../assets/icons//icons8-user-48.png';
+import userIcon from '../../assets/icons/icons8-user-48.png';
 import searchIcon from '../../assets/icons/icons8-search.svg';
 import { useNavigate } from 'react-router-dom';
 import './Footer.scss';

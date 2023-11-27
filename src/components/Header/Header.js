@@ -25,7 +25,6 @@ export default function Header() {
       setIsLogin(false);
       setIsSignup(false);
       setIsFeed(false);
-      console.log(pathname);
     } else if (pathname === '/login') {
       setIsLogin(true);
       setIsSearch(false);

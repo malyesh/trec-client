@@ -1,0 +1,69 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
+.popup-content {
+  margin: auto;
+  background: #fff;
+  width: 350px;
+  padding: 5px;
+  border: 1px solid #d7d7d7;
+  height: fit-content;
+  position: relative;
+  padding-top: 14px;
+  @include tablet {
+    width: fit-content;
+  }
+}
+[role='tooltip'].popup-content {
+  width: 200px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+}
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}
+.popup-arrow {
+  -webkit-filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, 0.16));
+  filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, 0.16));
+  color: #fff;
+  stroke-width: 2px;
+  stroke: #d7d7d7;
+  stroke-dasharray: 30px;
+  stroke-dashoffset: -54px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.modal {
+  &__trigger {
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+    @include tablet {
+      height: 150px;
+      width: 150px;
+    }
+    @include desktop {
+      height: 170px;
+      width: 170px;
+    }
+  }
+  &__close {
+    height: 2rem;
+    position: absolute;
+    width: 2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    left: -15px;
+    font-size: 1.5rem;
+    top: -15px;
+    &:hover {
+      background-color: $orange;
+    }
+  }
+}
