@@ -18,22 +18,22 @@ export default function PostPage() {
 
     if (!token) {
       setFailedAuth(true);
+    } else {
+      const getUserInfo = async () => {
+        try {
+          const res = await axios.get(`${apiBody}/user`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUser(res.data);
+        } catch (error) {
+          setFailedAuth(true);
+        }
+      };
+
+      getUserInfo();
     }
-
-    const getUserInfo = async () => {
-      try {
-        const res = await axios.get(`${apiBody}/user`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(res.data);
-      } catch (error) {
-        setFailedAuth(true);
-      }
-    };
-
-    getUserInfo();
   }, [apiBody]);
 
   const renderMessage = () => {
