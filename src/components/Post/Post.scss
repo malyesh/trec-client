@@ -1,0 +1,97 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
+
+.post {
+  position: relative;
+  @include tablet {
+    width: 475px;
+  }
+  &__profile {
+    display: flex;
+    position: relative;
+    &--image {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 3px solid white;
+      object-fit: cover;
+      position: absolute;
+      top: -5px;
+      left: 10px;
+    }
+    &--default {
+      background-color: white;
+    }
+    &--name {
+      position: relative;
+      left: 68px;
+      padding-bottom: 4px;
+      font-weight: 700;
+    }
+  }
+  &__picture {
+    height: 420px;
+    width: 100%;
+    object-fit: cover;
+    @include tablet {
+      height: 450px;
+    }
+  }
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    bottom: 19px;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    &--section {
+      display: flex;
+      align-items: center;
+      padding-bottom: 5px;
+      position: relative;
+    }
+  }
+  &__landmark {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
+  &__caption {
+    text-align: start;
+    font-size: 14px;
+    font-weight: 600;
+    @include tablet {
+      font-size: 1rem;
+      line-height: 1.25rem;
+    }
+  }
+  &__like {
+    filter: invert(25%) sepia(99%) saturate(6670%) hue-rotate(357deg)
+      brightness(98%) contrast(115%);
+    height: 1rem;
+    margin-left: auto;
+    cursor: pointer;
+    &--error {
+      position: absolute;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 5px;
+      top: -60px;
+      right: -6px;
+    }
+  }
+  &__stars {
+    display: flex;
+    padding-left: 0.5rem;
+    &--item {
+      height: 1rem;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}

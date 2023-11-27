@@ -1,0 +1,23 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
+
+.favorites {
+  text-align: left;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+      padding-top: 2rem;
+    }
+  }
+  &__empty {
+    padding: 0 1rem;
+    text-align: center;
+    line-height: 2rem;
+  }
+  &--item {
+    margin-bottom: 1.5rem;
+  }
+}

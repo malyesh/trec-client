@@ -1,0 +1,81 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
+
+.profile {
+  &-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    padding-bottom: 0;
+    @include tablet {
+      padding: 1rem 2rem;
+      flex-direction: row;
+      margin-bottom: 2rem;
+      align-items: flex-end;
+      border-bottom: 1px solid lightgrey;
+    }
+    @include desktop {
+      padding: 1rem 0;
+      @include desktop-container;
+    }
+    &__image {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      @include tablet {
+        height: 120px;
+        width: 120px;
+      }
+    }
+    &__name {
+      padding: 1rem;
+      @include tablet {
+        font-size: 1.25rem;
+        padding: 0.5rem 0;
+      }
+    }
+    &__bottom {
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 1.5rem;
+      }
+    }
+  }
+  &__button {
+    margin-bottom: 2rem;
+    width: 100%;
+    @include tablet {
+      margin-bottom: 0;
+    }
+    &--logout {
+      @include button;
+      @include tablet {
+        height: 1.5rem;
+      }
+    }
+  }
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+    justify-content: center;
+    @include tablet {
+      padding: 0 2rem;
+      margin-right: auto;
+      margin-left: auto;
+      width: 540px;
+      justify-content: flex-start;
+    }
+    @include desktop {
+      padding: 0;
+    }
+  }
+  &__post {
+    padding: 4px;
+  }
+}

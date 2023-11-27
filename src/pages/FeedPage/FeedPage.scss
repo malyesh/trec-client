@@ -1,0 +1,19 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
+.feed {
+  text-align: left;
+  &__posts {
+    @include tablet {
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &--item {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

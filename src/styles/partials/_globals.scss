@@ -1,0 +1,43 @@
+@use './colors' as *;
+@use './variables' as *;
+@use './mixins' as *;
+@use './fonts' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  color: $navy;
+}
+
+html {
+  font-size: 100%;
+}
+
+body,
+button {
+  font-family: 'Metropolis', Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Metropolis', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.css-b62m3t-container,
+.css-13cymwt-control,
+.css-1fdsijx-ValueContainer {
+  height: 45px;
+  text-align: start;
+  font-size: 14px;
+  @include tablet {
+    height: 50px;
+  }
+}
+
+.css-b62m3t-container {
+  margin-bottom: 1rem;
+}

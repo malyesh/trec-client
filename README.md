@@ -1,113 +1,74 @@
-# TRec
+# TravelRec - Client Side
 
-### _Create and see the best travel reccomendations!_
+Server Side - [https://github.com/malyesh/trec-server](https://github.com/malyesh/trec-server)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Preview](#preview)
 
 ## Overview
 
-An application where users post reccomendations for specific tourist attractions and famous landmarks, giving their opinion about if its overrated or underrated, how much time a person needs there etc. so that when other people are looking to go on a trip they can get all their reccomendations in one spot, and even create their own on vacation!
+Welcome to TravelRec! this is an application where users can post travel landmark photos in a social media style while giving real tips, recommendations, and ratings to those locations. Other users are able to browse these posts, favorite the ones that may be helpful for an upcoming trip, and can use these recommendations to guide their itinerary creation! Users can view a feed of all posts to gain ideas, or choose to look at the post feed of one specific landmark. They can also view their own posts on their profile page. A user does not need to be logged in to browse the posts, but must be logged in in order to create posts and to favorite posts.
 
-## Problem
+This process consolidates the research that a traveler would need to do when creating an itinerary and deciding where they should go, how much time to spend there, and what is worth the wait.
 
-Researching for travel can get very confusing and its mostly just long-winded blogs or paid-for tour groups advertising. With this app, public opinion for each of the places a person would want to travel to is in one place and can even show them somewhere they didn't think to go before!
+I hope you find this helpful too!
 
-## User Profile
+## Technologies Used
 
-Two kinds of users will use this application
-
-- People who like to travel and have a lot of insights on many of the cities and landmarks
-- People who have a hard time sifting through research before a big trip.
+- HTML
+- SCSS
+- React
+- Axios
+- react-select library
+- reactjs-popup
 
 ## Features
 
-- search for country and city
-- render a list of all the landmarks and tourist attractions in that city to pick from
-- view all posts in that landmark category
-- create a post - upload a picture, rating, comment
+1. **User Authentication:**
+   Users can sign up and log in to personalized accounts where they have access to all their account information.
 
-## Implementation
+2. **Create Posts:**
+   Users can create new posts and upload their own pictures that are all saved in the database.
 
-### Tech Stack
+3. **Favorite Posts:**
+   Users can favorite posts that they want to save for later, this is also saved in the database.
 
-HTML/SCSS, React, Node, Express, Axios, MySQL, Knex
+4. **Landmark and Post Feeds**
+   Users can search for and view landmarks to look at as well as specific post feeds for each chosen landmark.
 
-### APIs
+## Getting Started
 
-Country names and their cities API
-Create my own user and post tables in database
+Clone this repository
 
-### Sitemap
+```bash
+git clone https://github.com/malyesh/trec-client.git
+```
 
-- home page / search page - where the user searches for the country and city (drop down)
-- landmark list page - all the landmarks for that city show up and are links to a ->
-- landmark page - all the posts for that landmark are rendered here
-- create post page - where the user can upload info to post to a landmark page
+Install the dependencies and start the client side React app
 
-### Mockups
+```bash
+npm i
+npm start
+```
 
-![pic1](https://github.com/malyesh/trec-client/assets/74512928/346fb558-0ca2-4bc8-9b59-d5c40f796b02) ![pic2](https://github.com/malyesh/trec-client/assets/74512928/aa1283d2-11d2-4537-8d63-2d6c4094c092)
-![pic4](https://github.com/malyesh/trec-client/assets/74512928/19cb1d80-09a7-4e2c-a33e-cab53a4291ce)
+## Preview
 
-![pic5](https://github.com/malyesh/trec-client/assets/74512928/ca63dad2-4ce0-4905-99bb-3e463f64766d) ![pic6](https://github.com/malyesh/trec-client/assets/74512928/31b1be56-550c-4a17-9eba-7e25e5af94bd)
-![pic8](https://github.com/malyesh/trec-client/assets/74512928/4bd76f69-e654-4b1e-a979-6395b52c2faf)
-
-### Data
-
-Have an API that provides country data with the cities in it
-Create a database with three tables -
-| Landmark | |
-| ------ | ------ |
-| id | primary key |
-| country | |
-| city | |
-| name | |
-
-| User |             |
-| ---- | ----------- |
-| id   | primary key |
-| name |             |
-
-| Post          |              |
-| ------------- | ------------ |
-| id            | primary key  |
-| landmark_id   | foreign key  |
-| user_id       | foreign key  |
-| image url     |              |
-| title/comment |              |
-| rating        |              |
-| favorite      | boolean flag |
-
-### Endpoints
-
-- get /countries => all countries from api
-- get /countries/:country/cities => cities from that country
-- get /landmarks/:country/:city/landmarks => from database to get all the landmark options in that country, city
-- get /landmarks/:landmark => all posts from that landmark
-- post /user/posts => post to a specific landmark
-- get /user => (nice to have) all info about the specific user for profile page
-- get /user/post => (nice to have) all the posts made by the user
-- put /post => (nice to have) user to favorite someone's post
-- get /post => (nice to have) all posts to scroll through
-
-### Auth
-
-I would like to have authorization implemented, as we have not learned it yet, I don't know how complicated it will be to implement in the limited time we will have after learning. But ideally, this application does depend on user login.
-
-## Roadmap
-
-| Phases | Task                                                                                                        |
-| ------ | ----------------------------------------------------------------------------------------------------------- |
-| 1      | design wireframes and database, find API                                                                    |
-| 2      | build out pages with HTML and scss, populate db with data, connect to API                                   |
-| 3      | functionality for home/search page - calling API to get country and city - linked to the Landmark list page |
-| 4      | functionality for landmark list page - render landmarks from db as cards that link to Landmark feed page    |
-| 5      | functionality for landmark feed page - render posts from db for that landmark                               |
-| 6      | functionality for create post page - form to add a post to the db                                           |
-| 7      | profile page with user posts                                                                                |
-
-## Nice-to-haves
-
-- hidden gems - when the landmark page renders the list of landmarks, it will also have a section for "hidden gems" -> users can post to a separate section of the not commonly known attractions
-- star/favorite posts so that they can easily access at a later time on the user's page
-- patch /users/posts/:post => like a post
-- real upload image functionality rather than default image used for new posts
-- have a user profile page to view user information and favorited posts
+home page
+![Screenshot 2023-11-26 222449](https://github.com/malyesh/trec-server/assets/74512928/6f054454-1fa2-41d6-8013-b72a67162358)
+see popular posts feed
+![Screenshot 2023-11-26 222506](https://github.com/malyesh/trec-server/assets/74512928/9d3b61e7-c5fe-4802-8c1b-98535d98f3a6)
+search for landmarks in a country and city from the drop down menus
+![Screenshot 2023-11-26 222522](https://github.com/malyesh/trec-server/assets/74512928/757bf01a-4fe9-4f3d-a063-d7f4a688e676)
+pick a landmark to view it's post feed
+![Screenshot 2023-11-26 222551](https://github.com/malyesh/trec-server/assets/74512928/1e8fb66c-4f35-4fa3-bb7d-7283eb6acffa)
+sign up
+![Screenshot 2023-11-26 222604](https://github.com/malyesh/trec-server/assets/74512928/ef887ad3-0a1a-4452-902d-679f40f3aafd)
+log in
+![Screenshot 2023-11-26 222615](https://github.com/malyesh/trec-server/assets/74512928/b8eb2f66-1cef-4c5d-af04-910825983880)
+create a post
+![Screenshot 2023-11-26 222716](https://github.com/malyesh/trec-server/assets/74512928/682e3312-0e8c-49f2-a542-dd7a5cb27fb8)

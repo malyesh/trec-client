@@ -1,0 +1,48 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/mixins' as *;
+
+.feed {
+  text-align: left;
+  &__body {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      align-items: center;
+      padding-top: 2rem;
+    }
+    &--item {
+      margin-bottom: 1.5rem;
+    }
+  }
+  &__container {
+    padding: 2rem;
+  }
+  &__empty {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    justify-content: center;
+    &--title {
+      width: 60%;
+      @include tablet {
+        font-size: 1.5rem;
+      }
+    }
+    &--icon {
+      height: 5rem;
+    }
+    &--button {
+      @include button;
+      @include tablet {
+        width: 200px;
+      }
+      &-container {
+        @include tablet {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

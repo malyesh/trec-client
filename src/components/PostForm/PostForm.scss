@@ -1,0 +1,120 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+.post {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    font-size: 14px;
+    @include tablet {
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+    @include desktop {
+      @include desktop-container;
+    }
+    &--container {
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    &--section {
+      display: flex;
+      flex-direction: column;
+      @include tablet {
+        width: 47%;
+      }
+    }
+  }
+  &__label {
+    margin-bottom: 8px;
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
+  &__input {
+    margin-bottom: 1rem;
+
+    &--rating {
+      width: 60px;
+    }
+    &__label {
+      margin-bottom: 8px;
+    }
+
+    &--upload {
+      border-radius: 5px;
+      display: flex;
+      padding: 6px 12px;
+      cursor: pointer;
+      height: 45px;
+      width: fit-content;
+      margin-bottom: 1rem;
+      align-items: center;
+      background-color: $yellow;
+      font-size: 14px;
+      box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+      &:hover {
+        background-color: $orange;
+      }
+      @include tablet {
+        padding: 6px;
+        justify-content: center;
+        text-align: center;
+        font-size: 1rem;
+        margin-top: auto;
+        margin-bottom: 1rem;
+        height: 50px;
+        width: 127px;
+      }
+    }
+    &--bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      @include tablet {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+  &__button {
+    @include button;
+    @include tablet {
+      font-size: 1rem;
+      width: 127px;
+    }
+    &--container {
+      @include tablet {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.disabled {
+  @include disabled-button;
+}
+
+.uploaded {
+  background-color: $orange;
+}
+
+.error {
+  position: absolute;
+  padding-top: 8px;
+  color: red;
+  display: none;
+  &__show {
+    display: flex;
+  }
+}

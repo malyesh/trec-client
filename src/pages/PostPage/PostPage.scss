@@ -1,0 +1,24 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
+.post-page {
+  text-align: left;
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-top: 0;
+    @include tablet {
+      padding-top: 2rem;
+    }
+  }
+  &__error {
+    padding: 2rem;
+    text-align: center;
+    &--title {
+      padding-bottom: 2rem;
+    }
+  }
+}

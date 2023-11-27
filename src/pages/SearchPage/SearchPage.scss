@@ -1,0 +1,87 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
+.hide {
+  display: none;
+  margin: none;
+}
+.show {
+  display: inline;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  @include tablet {
+    padding: 1rem 2rem;
+  }
+  &__form {
+    position: relative;
+    top: -40px;
+    z-index: 3;
+    @include desktop {
+      @include desktop-container;
+    }
+  }
+
+  &__dropdown {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    @include tablet {
+      width: 45%;
+    }
+    &--container {
+      @include tablet {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+  &__label {
+    padding-bottom: 4px;
+  }
+  &__button {
+    @include button;
+    &--feed {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      @include tablet {
+        margin: 0;
+        margin-left: 1rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+    }
+    &--icon {
+      transform: rotate(180deg);
+      height: 2rem;
+      position: relative;
+      top: -3px;
+      @include tablet {
+        height: 1.75rem;
+      }
+    }
+    @include tablet {
+      width: 150px;
+      font-size: 13px;
+    }
+    &--container {
+      @include tablet {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.disabled {
+  @include disabled-button;
+}
