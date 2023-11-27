@@ -35,6 +35,7 @@ export default function PostForm({ id }) {
     id: '',
   });
   const [disabled, setDisabled] = useState(true);
+  const [error, setError] = useState(false);
   const apiBody = process.env.REACT_APP_API_URL;
 
   const navigate = useNavigate();
@@ -121,29 +122,32 @@ export default function PostForm({ id }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (values.rating > 5 || values.rating < 0) {
+      setError(true);
+    } else {
+      let newPost = {
+        caption: values.caption,
+        landmark_id: selectedLandmark.id,
+        rating: values.rating,
+        picture: file,
+      };
 
-    let newPost = {
-      caption: values.caption,
-      landmark_id: selectedLandmark.id,
-      rating: values.rating,
-      picture: file,
-    };
-
-    try {
-      await axios.post(`${apiBody}/posts/create`, newPost, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      navigate(
-        `/${selectedCountry.id}/${selectedCity.id}/${selectedLandmark.id}`,
-        {
-          state: { name: selectedLandmark.value },
-        }
-      );
-    } catch (error) {
-      console.log(error);
+      try {
+        await axios.post(`${apiBody}/posts/create`, newPost, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        navigate(
+          `/${selectedCountry.id}/${selectedCity.id}/${selectedLandmark.id}`,
+          {
+            state: { name: selectedLandmark.value },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -214,6 +218,9 @@ export default function PostForm({ id }) {
                 value={values.rating}
                 onChange={handleInputChange}
               />
+              <p className={`error ${error ? 'error__show' : ''}`}>
+                Value must be between 0 and 5
+              </p>
             </div>
 
             {!file ? (

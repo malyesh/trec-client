@@ -42,7 +42,7 @@ export default function LoginPage() {
       }, 1000);
     } catch (error) {
       setIsLoginError(true);
-      setErrorMessage(error.message);
+      setErrorMessage('email and password do not match');
     }
   };
 
@@ -54,7 +54,7 @@ export default function LoginPage() {
     <div className='login'>
       <h2 className='login__title'>Log in</h2>
 
-      {isLoginError && <label className='error'>{errorMessage}</label>}
+      {isLoginError && <label className='error-message'>{errorMessage}</label>}
       <form onSubmit={handleLogin} className='login__form'>
         <div className='login__form--input'>
           <Input

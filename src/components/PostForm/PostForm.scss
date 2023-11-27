@@ -65,6 +65,7 @@
       @include tablet {
         padding: 6px;
         justify-content: center;
+        text-align: center;
         font-size: 1rem;
         margin-top: auto;
         margin-bottom: 1rem;
@@ -106,4 +107,14 @@ input[type='file'] {
 
 .uploaded {
   background-color: $orange;
+}
+
+.error {
+  position: absolute;
+  padding-top: 8px;
+  color: red;
+  display: none;
+  &__show {
+    display: flex;
+  }
 }
