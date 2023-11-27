@@ -10,6 +10,7 @@ export default function ProfilePage() {
   const [userInfo, setUserInfo] = useState({});
   const [allPosts, setAllPosts] = useState();
   const [isImage, setIsImage] = useState(false);
+  const [hasDeleted, setHasDeleted] = useState();
 
   const apiBody = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function ProfilePage() {
       setAllPosts(posts.data);
     };
     getAllPosts();
-  }, [apiBody, token, isLoading]);
+  }, [apiBody, token, isLoading, hasDeleted]);
 
   useEffect(() => {
     const checkImage = () => {
@@ -103,7 +104,7 @@ export default function ProfilePage() {
         {allPosts.map((post) => {
           return (
             <div className='profile__post' key={post.id}>
-              <PostModal post={post} />
+              <PostModal post={post} setHasDeleted={setHasDeleted} />
             </div>
           );
         })}

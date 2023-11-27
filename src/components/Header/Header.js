@@ -10,7 +10,10 @@ export default function Header() {
   const [isSearch, setIsSearch] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [isPost, setIsPost] = useState(false);
   const [isFeed, setIsFeed] = useState(false);
+  const [isFav, setIsFav] = useState(false);
+  const [isProfile, setIsProfile] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
@@ -25,6 +28,9 @@ export default function Header() {
       setIsLogin(false);
       setIsSignup(false);
       setIsFeed(false);
+      setIsPost(false);
+      setIsFav(false);
+      setIsProfile(false);
     } else if (pathname === '/login') {
       setIsLogin(true);
       setIsSearch(false);
@@ -40,11 +46,41 @@ export default function Header() {
       setIsSignup(false);
       setIsLogin(false);
       setIsSearch(false);
+      setIsPost(false);
+      setIsFav(false);
+      setIsProfile(false);
+    } else if (pathname === '/post') {
+      setIsFeed(false);
+      setIsSignup(false);
+      setIsLogin(false);
+      setIsSearch(false);
+      setIsPost(true);
+      setIsFav(false);
+      setIsProfile(false);
+    } else if (pathname === '/favorites') {
+      setIsFeed(false);
+      setIsSignup(false);
+      setIsLogin(false);
+      setIsSearch(false);
+      setIsPost(false);
+      setIsFav(true);
+      setIsProfile(false);
+    } else if (pathname === '/profile') {
+      setIsFeed(false);
+      setIsSignup(false);
+      setIsLogin(false);
+      setIsSearch(false);
+      setIsPost(false);
+      setIsFav(false);
+      setIsProfile(true);
     } else {
       setIsFeed(false);
       setIsSignup(false);
       setIsLogin(false);
       setIsSearch(false);
+      setIsPost(false);
+      setIsFav(false);
+      setIsProfile(false);
     }
   }, [pathname]);
 
@@ -72,48 +108,100 @@ export default function Header() {
         </section>
 
         {token && (
-          <div className='header__section header__section--logo'>
-            <img
-              className={`header__icon header__icon--plane ${
-                isFeed ? 'header__icon--active' : ''
-              }`}
-              src={planeIcon}
-              alt='plane'
-              onClick={() => {
-                navigate('/feed');
-              }}
-            />
-            <img
-              className={`header__icon header__icon--camera ${
-                isFeed ? 'header__icon--active' : ''
-              }`}
-              src={cameraIcon}
-              alt='camera'
-              onClick={() => {
-                navigate('/post');
-              }}
-            />
-            <img
-              className={`header__icon header__icon--heart ${
-                isFeed ? 'header__icon--active' : ''
-              }`}
-              src={heartIcon}
-              alt='heart'
-              onClick={() => {
-                navigate('/favorites');
-              }}
-            />
-            <img
-              className={`header__icon header__icon--profile ${
-                isFeed ? 'header__icon--active' : ''
-              }`}
-              src={userIcon}
-              alt='profile'
-              onClick={() => {
-                navigate('/profile');
-              }}
-            />
-          </div>
+          <>
+            <div
+              className={`header__section header__section--logo header__section--mobile `}
+            >
+              <img
+                className={`header__icon header__icon--plane ${
+                  isFeed ? 'header__icon--active' : ''
+                }`}
+                src={planeIcon}
+                alt='plane'
+                onClick={() => {
+                  navigate('/feed');
+                }}
+              />
+              <img
+                className={`header__icon header__icon--camera ${
+                  isFeed ? 'header__icon--active' : ''
+                }`}
+                src={cameraIcon}
+                alt='camera'
+                onClick={() => {
+                  navigate('/post');
+                }}
+              />
+              <img
+                className={`header__icon header__icon--heart ${
+                  isFeed ? 'header__icon--active' : ''
+                }`}
+                src={heartIcon}
+                alt='heart'
+                onClick={() => {
+                  navigate('/favorites');
+                }}
+              />
+              <img
+                className={`header__icon header__icon--profile ${
+                  isFeed ? 'header__icon--active' : ''
+                }`}
+                src={userIcon}
+                alt='profile'
+                onClick={() => {
+                  navigate('/profile');
+                }}
+              />
+            </div>
+            <div
+              className={`header__section header__section--logo header__section--tablet `}
+            >
+              <button
+                className={`header__button ${
+                  isFeed ? 'header__button--active' : ''
+                } ${!isSearch ? '' : 'header__button--other'}`}
+                type='click'
+                onClick={() => {
+                  navigate('/feed');
+                }}
+              >
+                feed
+              </button>
+              <button
+                className={`header__button  ${
+                  isPost ? 'header__button--active' : ''
+                } ${!isSearch ? '' : 'header__button--other'}`}
+                type='click'
+                onClick={() => {
+                  navigate('/post');
+                }}
+              >
+                post
+              </button>
+              <button
+                className={`header__button  ${
+                  isFav ? 'header__button--active' : ''
+                } ${!isSearch ? '' : 'header__button--other'}`}
+                type='click'
+                onClick={() => {
+                  navigate('/favorites');
+                }}
+              >
+                favorites
+              </button>
+              <button
+                className={`header__button  ${
+                  isProfile ? 'header__button--active' : ''
+                } ${!isSearch ? '' : 'header__button--other'}`}
+                type='click'
+                onClick={() => {
+                  navigate('/profile');
+                }}
+              >
+                profile
+              </button>
+            </div>
+          </>
         )}
         {!token && (
           <div className='header__section header__section--logo'>

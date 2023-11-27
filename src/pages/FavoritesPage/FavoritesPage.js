@@ -33,10 +33,9 @@ export default function FavoritesPage() {
         ) : (
           favorites.map((post) => {
             return (
-              <div className='favorites--item'>
+              <div className='favorites--item' key={post.id}>
                 <Post
                   name={`${post.first_name} ${post.last_name}`}
-                  key={post.id}
                   id={post.id}
                   landmark={post.landmark_name}
                   caption={post.caption}

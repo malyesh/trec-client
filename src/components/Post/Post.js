@@ -47,12 +47,22 @@ export default function Post({
     let starArray = [];
     for (let i = 1; i <= rating; i++) {
       starArray.push(
-        <img className='post__stars--item' src={goldstar} alt='goldstar' />
+        <img
+          className='post__stars--item'
+          src={goldstar}
+          alt='goldstar'
+          key={Math.floor(Math.random() * 1000)}
+        />
       );
     }
     for (let i = rating; i < 5; i++) {
       starArray.push(
-        <img className='post__stars--item' src={greystar} alt='goldstar' />
+        <img
+          className='post__stars--item'
+          src={greystar}
+          alt='goldstar'
+          key={Math.floor(Math.random() * 1000)}
+        />
       );
     }
     return starArray.map((star) => star);

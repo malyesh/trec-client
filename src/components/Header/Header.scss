@@ -54,13 +54,21 @@
     width: fit-content;
     padding: 0 8px;
     margin-left: 4px;
-    background-color: white;
+    // background-color: white;
+    color: white;
+    background: none;
     box-shadow: none;
     &:hover {
-      background-color: $orange;
+      // background-color: $orange;
+      background: none;
+      color: $orange;
+      font-weight: 600;
     }
     &--active {
-      background-color: $orange;
+      // background-color: $orange;
+      background: none;
+      color: $orange;
+      font-weight: 600;
     }
     @include tablet {
       font-size: 1rem;
@@ -69,16 +77,35 @@
     @include desktop {
       height: 1.75rem;
     }
+    &--other {
+      background-color: white;
+      color: $navy;
+      &:hover {
+        background-color: white;
+      }
+    }
   }
   &__section {
     height: fit-content;
     &:hover {
       color: $orange;
       cursor: pointer;
+      font-weight: 600;
     }
     &--logo {
       display: flex;
       align-items: center;
+    }
+    &--mobile {
+      @include tablet {
+        display: none;
+      }
+    }
+    &--tablet {
+      display: none;
+      @include tablet {
+        display: flex;
+      }
     }
   }
   &__logo {

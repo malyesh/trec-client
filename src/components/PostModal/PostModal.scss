@@ -40,6 +40,7 @@
 }
 
 .modal {
+  position: relative;
   &__trigger {
     object-fit: cover;
     height: 100px;
@@ -60,11 +61,25 @@
     width: 2rem;
     cursor: pointer;
     border-radius: 50%;
-    left: -15px;
+    left: -20px;
     font-size: 1.5rem;
-    top: -15px;
+    top: -30px;
     &:hover {
       background-color: $orange;
+    }
+  }
+  &__content {
+    &--delete {
+      position: relative;
+      padding: 1rem;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 1rem;
+      background-color: lightgrey;
+      &:hover {
+        background-color: $orange;
+        cursor: pointer;
+      }
     }
   }
 }
