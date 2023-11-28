@@ -37,7 +37,7 @@
     }
     @include desktop {
       height: 60vh;
-      background-position: 0% 20%;
+      background-position: 0% 25%;
     }
   }
   &__text {
@@ -62,13 +62,13 @@
       // background-color: $orange;
       background: none;
       color: $orange;
-      font-weight: 600;
+      // font-weight: 600;
     }
     &--active {
       // background-color: $orange;
       background: none;
       color: $orange;
-      font-weight: 600;
+      // font-weight: 600;
     }
     @include tablet {
       font-size: 1rem;
@@ -90,7 +90,7 @@
     &:hover {
       color: $orange;
       cursor: pointer;
-      font-weight: 600;
+      // font-weight: 600;
     }
     &--logo {
       display: flex;
@@ -122,15 +122,31 @@
     border-radius: 4px;
     margin-left: 4px;
     background-color: white;
+
     &:hover {
       background-color: $orange;
       cursor: pointer;
+    }
+    &--other {
+      background: none;
+      filter: invert(100%) sepia(98%) saturate(0%) hue-rotate(327deg)
+        brightness(104%) contrast(102%);
+      &:hover {
+        filter: invert(63%) sepia(52%) saturate(465%) hue-rotate(330deg)
+          brightness(97%) contrast(97%);
+        cursor: pointer;
+        background: none;
+      }
     }
     &--camera {
       padding: 0 8px;
     }
     @include tablet {
       height: 1.55rem;
+    }
+    &--active {
+      filter: invert(63%) sepia(52%) saturate(465%) hue-rotate(330deg)
+        brightness(97%) contrast(97%);
     }
   }
 }

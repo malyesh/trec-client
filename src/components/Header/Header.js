@@ -115,7 +115,7 @@ export default function Header() {
               <img
                 className={`header__icon header__icon--plane ${
                   isFeed ? 'header__icon--active' : ''
-                }`}
+                } ${!isSearch ? 'header__icon--other' : ''}`}
                 src={planeIcon}
                 alt='plane'
                 onClick={() => {
@@ -124,8 +124,8 @@ export default function Header() {
               />
               <img
                 className={`header__icon header__icon--camera ${
-                  isFeed ? 'header__icon--active' : ''
-                }`}
+                  isPost ? 'header__icon--active' : ''
+                } ${!isSearch ? 'header__icon--other' : ''}`}
                 src={cameraIcon}
                 alt='camera'
                 onClick={() => {
@@ -134,8 +134,8 @@ export default function Header() {
               />
               <img
                 className={`header__icon header__icon--heart ${
-                  isFeed ? 'header__icon--active' : ''
-                }`}
+                  isFav ? 'header__icon--active' : ''
+                } ${!isSearch ? 'header__icon--other' : ''}`}
                 src={heartIcon}
                 alt='heart'
                 onClick={() => {
@@ -144,8 +144,8 @@ export default function Header() {
               />
               <img
                 className={`header__icon header__icon--profile ${
-                  isFeed ? 'header__icon--active' : ''
-                }`}
+                  isProfile ? 'header__icon--active' : ''
+                } ${!isSearch ? 'header__icon--other' : ''}`}
                 src={userIcon}
                 alt='profile'
                 onClick={() => {
@@ -208,7 +208,7 @@ export default function Header() {
             <button
               className={`header__button header__button--signup ${
                 isSignup ? 'header__button--active' : ''
-              }`}
+              } ${!isSearch ? '' : 'header__button--other'}`}
               type='click'
               onClick={() => {
                 navigate('/signup');
@@ -219,7 +219,7 @@ export default function Header() {
             <button
               className={`header__button header__button--login ${
                 isLogin ? 'header__button--active' : ''
-              }`}
+              } ${!isSearch ? '' : 'header__button--other'}`}
               type='click'
               onClick={() => {
                 navigate('/login');

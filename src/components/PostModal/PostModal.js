@@ -5,7 +5,7 @@ import Post from '../Post/Post';
 import axios from 'axios';
 import { useState } from 'react';
 
-export default function PostModal({ post, setHasDeleted }) {
+export default function PostModal({ post, setHasDeleted, hasDeleted }) {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   const apiBody = process.env.REACT_APP_API_URL;
@@ -13,9 +13,9 @@ export default function PostModal({ post, setHasDeleted }) {
   const handleDelete = async () => {
     console.log(`delete ${post.id}`);
     try {
-      setHasDeleted(true);
       const response = await axios.delete(`${apiBody}/posts/${post.id}`);
       console.log(response.data);
+      setHasDeleted(!hasDeleted);
     } catch (e) {
       console.log(e);
     }
@@ -31,7 +31,7 @@ export default function PostModal({ post, setHasDeleted }) {
         className='modal__trigger'
         onClick={() => setOpen((o) => !o)}
       />
-      <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+      <Popup open={open} closeOnDocumentClick onClose={closeModal} nested>
         <div className='modal'>
           <button className='modal__close' onClick={closeModal}>
             &times;
@@ -39,7 +39,6 @@ export default function PostModal({ post, setHasDeleted }) {
           <div className='modal__content'>
             <Post
               name={`${post.first_name} ${post.last_name}`}
-              key={post.id}
               id={post.id}
               landmark={post.landmark_name}
               caption={post.caption}
@@ -49,9 +48,22 @@ export default function PostModal({ post, setHasDeleted }) {
               profile={post.profile}
             />
           </div>
-          <button className='modal__content--delete' onClick={handleDelete}>
-            delete post
-          </button>
+          <button className='modal__content--delete'>delete post</button>
+          {/* <Popup
+            open={open}
+            position='top center'
+            arrow={false}
+            closeOnDocumentClick
+            nested
+          >
+            <div className='modal__content--confirm'>
+              are you sure you would like to delete this post?
+              <div>
+                <button onClick={handleDelete}>yes</button>
+                <button>no</button>
+              </div>
+            </div>
+          </Popup> */}
         </div>
       </Popup>
     </div>

@@ -10,7 +10,7 @@ export default function ProfilePage() {
   const [userInfo, setUserInfo] = useState({});
   const [allPosts, setAllPosts] = useState();
   const [isImage, setIsImage] = useState(false);
-  const [hasDeleted, setHasDeleted] = useState();
+  const [hasDeleted, setHasDeleted] = useState(false);
 
   const apiBody = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -101,10 +101,14 @@ export default function ProfilePage() {
       </div>
 
       <div className='profile__container'>
-        {allPosts.map((post) => {
+        {allPosts.map((post, i) => {
           return (
-            <div className='profile__post' key={post.id}>
-              <PostModal post={post} setHasDeleted={setHasDeleted} />
+            <div className='profile__post' key={i}>
+              <PostModal
+                post={post}
+                setHasDeleted={setHasDeleted}
+                hasDeleted={hasDeleted}
+              />
             </div>
           );
         })}

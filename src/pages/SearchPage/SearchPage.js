@@ -123,7 +123,7 @@ export default function SearchPage() {
                 navigate('/feed');
               }}
             >
-              popular posts!
+              popular posts
               <img
                 src={arrowIcon}
                 alt='arrow'
