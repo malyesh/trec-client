@@ -16,6 +16,8 @@ export default function Post({
   rating,
   picture,
   profile,
+  setLike,
+  like,
 }) {
   const [liked, setLiked] = useState(false);
   const [isImage, setIsImage] = useState(false);
@@ -81,18 +83,33 @@ export default function Post({
 
   const handleLike = async () => {
     if (token) {
-      const newFav = {
-        post_id: id,
-      };
-      try {
-        await axios.post(`${apiBody}/favorites`, newFav, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setLiked(true);
-      } catch (error) {
-        console.log(error);
+      if (!liked) {
+        try {
+          const favPost = {
+            post_id: id,
+          };
+          await axios.post(`${apiBody}/favorites`, favPost, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setLiked(true);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (liked) {
+        try {
+          console.log(token);
+          await axios.delete(`${apiBody}/favorites/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setLiked(false);
+          setLike(!like);
+        } catch (error) {
+          console.log(error);
+        }
       }
     } else {
       setIsVisible(true);

@@ -23,9 +23,9 @@ export default function FeedPage() {
     <div className='feed'>
       <Title title='Popular posts' />
       <section className='feed__posts'>
-        {posts.map((post) => {
+        {posts.map((post, i) => {
           return (
-            <div className='feed__posts--item' key={post.id}>
+            <div className='feed__posts--item' key={i}>
               <Post
                 name={`${post.first_name} ${post.last_name}`}
                 id={post.id}

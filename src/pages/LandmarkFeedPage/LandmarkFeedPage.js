@@ -35,9 +35,9 @@ export default function LandmarkFeedPage() {
 
       <div className='feed__body'>
         {posts.length > 0 ? (
-          posts.map((post) => {
+          posts.map((post, i) => {
             return (
-              <div className='feed__body--item' key={post.id}>
+              <div className='feed__body--item' key={i}>
                 <Post
                   name={`${post.first_name} ${post.last_name}`}
                   id={post.id}

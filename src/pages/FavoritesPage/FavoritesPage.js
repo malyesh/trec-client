@@ -6,6 +6,7 @@ import './FavoritesPage.scss';
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
+  const [like, setLike] = useState(true);
 
   const apiBody = process.env.REACT_APP_API_URL;
   const token = sessionStorage.getItem('token');
@@ -20,7 +21,7 @@ export default function FavoritesPage() {
       setFavorites(posts.data);
     };
     getFavorites();
-  }, [apiBody, token]);
+  }, [apiBody, token, like]);
 
   return (
     <div className='favorites'>
@@ -31,9 +32,9 @@ export default function FavoritesPage() {
             You haven't favorited anything yet!
           </h2>
         ) : (
-          favorites.map((post) => {
+          favorites.map((post, i) => {
             return (
-              <div className='favorites--item' key={post.id}>
+              <div className='favorites--item' key={i}>
                 <Post
                   name={`${post.first_name} ${post.last_name}`}
                   id={post.id}
@@ -43,6 +44,8 @@ export default function FavoritesPage() {
                   picture={post.picture}
                   date={post.created_at}
                   profile={post.profile}
+                  setLike={setLike}
+                  like={like}
                 />
               </div>
             );
