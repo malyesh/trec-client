@@ -10,67 +10,77 @@ export default function LandmarkListPage() {
   const [landmarkList, setLandmarkList] = useState(null);
   const [selectedLandmark, setSelectedLandmark] = useState();
   const [allLandmarks, setAllLandmarks] = useState();
-  const { countryId, cityId } = useParams();
+  const { query } = useParams();
   const location = useLocation();
   const { state } = location;
 
   const navigate = useNavigate();
   const apiBody = process.env.REACT_APP_API_URL;
 
+  // console.log(state.landmarks);
   useEffect(() => {
-    const getLandmarkList = async () => {
-      try {
-        const response = await axios.get(
-          `${apiBody}/landmarks/${countryId}/${cityId}`
-        );
-        setLandmarkList(response.data);
-        setAllLandmarks(
-          response.data.map((obj) => ({
-            value: obj.landmark_name,
-            label: obj.landmark_name,
-            id: obj.id,
-          }))
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getLandmarkList();
-  }, [apiBody, countryId, cityId]);
+    setAllLandmarks(state.landmarks);
+  }, [state]);
 
-  useEffect(() => {
-    if (selectedLandmark) {
-      navigate(`/${countryId}/${cityId}/${selectedLandmark.id}`, {
-        state: { name: selectedLandmark.value },
-      });
-    }
-  });
+  // useEffect(() => {
+  //   const getLandmarkList = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${apiBody}/landmarks/${countryId}/${cityId}`
+  //       );
+  //       setLandmarkList(response.data);
+  //       setAllLandmarks(
+  //         response.data.map((obj) => ({
+  //           value: obj.landmark_name,
+  //           label: obj.landmark_name,
+  //           id: obj.id,
+  //         }))
+  //       );
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getLandmarkList();
+  // }, [apiBody, countryId, cityId]);
 
-  if (!landmarkList) return <h1>Loading...</h1>;
+  // useEffect(() => {
+  //   if (selectedLandmark) {
+  //     navigate(
+  //       `/${selectedLandmark.country_id}/${selectedLandmark.city_id}/${selectedLandmark.id}`,
+  //       {
+  //         state: { name: selectedLandmark.landmark_name },
+  //       }
+  //     );
+  //   }
+  // }, []);
+
+  if (!allLandmarks) return <h1>Loading...</h1>;
+  // console.log(allLandmarks);
 
   return (
     <div className='list'>
-      <Title title={`${state.city.label}, ${state.country.label}`} />
+      <Title title={`Landmark results for "${query}"`} />
 
       <main className='list__body'>
-        <Dropdown
+        {/* <Dropdown
           options={allLandmarks}
           setSelectedElement={setSelectedLandmark}
           value={selectedLandmark}
           name='landmark'
           id='landmark'
           type='landmark'
-        />
+        /> */}
 
         <section className='list__container'>
-          {landmarkList.map((landmark) => {
+          {allLandmarks.map((landmark, i) => {
             return (
               <Landmark
-                key={landmark.id}
-                id={landmark.id}
-                name={landmark.landmark_name}
-                country={state.country}
-                city={state.city}
+                key={i}
+                // id={landmark.id}
+                // name={landmark.landmark_name}
+                // country={landmark.country_name}
+                // city={landmark.city_name}
+                landmark={landmark}
               />
             );
           })}

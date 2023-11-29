@@ -18,7 +18,9 @@ export default function LandmarkFeedPage() {
   useEffect(() => {
     try {
       const getPosts = async () => {
-        const allPosts = await axios.get(`${apiBody}/landmarks/${landmarkId}`);
+        const allPosts = await axios.get(
+          `${apiBody}/landmarks/feed/${landmarkId}`
+        );
         setPosts(allPosts.data);
       };
       getPosts();

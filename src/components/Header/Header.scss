@@ -32,12 +32,14 @@
     background-size: cover;
     object-fit: cover;
     height: 35vh;
+    background-position: 0% 20%;
     @include tablet {
       height: 50vh;
+      background-position: 0% 30%;
     }
     @include desktop {
-      height: 60vh;
-      background-position: 0% 25%;
+      // height: 50vh;
+      background-position: 0% 35%;
     }
   }
   &__text {

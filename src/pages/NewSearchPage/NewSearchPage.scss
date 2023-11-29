@@ -1,0 +1,103 @@
+@use '../../styles/partials/globals' as *;
+@use '../../styles/partials/fonts' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+
+.search {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  @include tablet {
+    padding: 1rem 2rem;
+  }
+  &__title {
+    color: white;
+    position: fixed;
+    top: 80px;
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: left;
+    width: 35%;
+    @include tablet {
+      width: 34%;
+      line-height: 3.25rem;
+      top: 120px;
+      font-size: 3rem;
+    }
+    @include desktop {
+      @include desktop-container;
+      top: 120px;
+      font-size: 3.5rem;
+      line-height: 4rem;
+      width: 30%;
+    }
+  }
+  &__form {
+    position: relative;
+    top: -45px;
+    z-index: 3;
+    @include tablet {
+      font-size: 2.25rem;
+    }
+    @include desktop {
+      @include desktop-container;
+    }
+    &--input {
+      margin-bottom: 1rem;
+      text-align: start;
+    }
+  }
+
+  &__button {
+    @include button;
+    &--feed {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      @include tablet {
+        margin: 0;
+        margin-left: 1rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+    }
+    &--icon {
+      transform: rotate(180deg);
+      height: 2rem;
+      position: relative;
+      top: -3px;
+      @include tablet {
+        height: 1.75rem;
+      }
+    }
+    @include tablet {
+      width: 150px;
+      font-size: 13px;
+    }
+    &--container {
+      @include tablet {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto;
+      }
+    }
+  }
+}
+.disabled {
+  @include disabled-button;
+}
+
+.field {
+  &__label {
+    color: white;
+  }
+  &__input {
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    &::placeholder {
+      font-size: 1rem;
+    }
+  }
+}

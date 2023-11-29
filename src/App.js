@@ -9,6 +9,7 @@ import SearchPage from './pages/SearchPage/SearchPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import FeedPage from './pages/FeedPage/FeedPage';
 import Header from './components/Header/Header';
+import NewSearchPage from './pages/NewSearchPage/NewSearchPage';
 
 function App() {
   return (
@@ -16,14 +17,16 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/' element={<SearchPage />} />
+          {/* <Route path='/' element={<SearchPage />} /> */}
+          <Route path='/' element={<NewSearchPage />} />
           <Route path='/signup' element={<SignupPage />} />
-          <Route path='/search' element={<SearchPage />} />
+          {/* <Route path='/search' element={<SearchPage />} /> */}
+          <Route path='/search' element={<NewSearchPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/feed' element={<FeedPage />} />
           <Route path='/post' element={<PostPage />} />
           <Route path='/profile' element={<ProfilePage />} />
-          <Route path='/:countryId/:cityId' element={<LandmarkListPage />} />
+          <Route path='/:query' element={<LandmarkListPage />} />
           <Route
             path='/:countryId/:cityId/:landmarkId'
             element={<LandmarkFeedPage />}

@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
 import './Landmark.scss';
 
-export default function Landmark({ id, country, city, name }) {
-  const countryId = country.id;
-  const cityId = city.id;
-  const landmarkId = id;
+export default function Landmark({ landmark }) {
+  const countryId = landmark.country_id;
+  const cityId = landmark.city_id;
+  const landmarkId = landmark.id;
+
   return (
     <Link
       to={`/${countryId}/${cityId}/${landmarkId}`}
-      state={{ name: name }}
+      state={{ name: landmark.landmark_name }}
       className='card'
     >
-      <h3 className='card__title'>{name}</h3>
+      <h3 className='card__title'>{landmark.landmark_name}</h3>
       <p className='card__info'>
-        {city.label}, {country.label}
+        {landmark.city_name}, {landmark.country_name}
       </p>
     </Link>
   );
