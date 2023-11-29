@@ -5,7 +5,14 @@ import Post from '../Post/Post';
 import axios from 'axios';
 import { useState } from 'react';
 
-export default function PostModal({ post, setHasDeleted, hasDeleted }) {
+export default function PostModal({
+  post,
+  setHasDeleted,
+  hasDeleted,
+  setLike,
+  like,
+  isPost,
+}) {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   const apiBody = process.env.REACT_APP_API_URL;
@@ -46,9 +53,17 @@ export default function PostModal({ post, setHasDeleted, hasDeleted }) {
               picture={post.picture}
               date={post.created_at}
               profile={post.profile}
+              setLike={setLike}
+              like={like}
+              closeModal={closeModal}
             />
           </div>
-          <button className='modal__content--delete'>delete post</button>
+          {isPost && (
+            <button onClick={handleDelete} className='modal__content--delete'>
+              delete post
+            </button>
+          )}
+
           {/* <Popup
             open={open}
             position='top center'

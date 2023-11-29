@@ -118,7 +118,7 @@
   }
   &__icon {
     height: 1.45rem;
-    padding: 4px 8px;
+    padding: 3px 8px;
     border-radius: 4px;
     margin-left: 4px;
     background-color: white;
@@ -140,6 +140,10 @@
     }
     &--camera {
       padding: 0 8px;
+    }
+    &--plane,
+    &--profile {
+      padding: 2px 8px;
     }
     @include tablet {
       height: 1.55rem;

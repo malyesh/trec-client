@@ -1,9 +1,8 @@
 import userIcon from '../../assets/icons/profile.svg';
-import heartIcon from '../../assets/icons/heart-line-icon.svg';
 import cameraIcon from '../../assets/icons/camera-svgrepo-com.svg';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import planeIcon from '../../assets/icons/airplane-outline-svgrepo-com.svg';
+import planeIcon from '../../assets/icons/airplane-outline-svgrepo-com thicker.svg';
 import './Header.scss';
 
 export default function Header() {
@@ -12,7 +11,6 @@ export default function Header() {
   const [isSignup, setIsSignup] = useState(false);
   const [isPost, setIsPost] = useState(false);
   const [isFeed, setIsFeed] = useState(false);
-  const [isFav, setIsFav] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,7 +27,6 @@ export default function Header() {
       setIsSignup(false);
       setIsFeed(false);
       setIsPost(false);
-      setIsFav(false);
       setIsProfile(false);
     } else if (pathname === '/login') {
       setIsLogin(true);
@@ -47,7 +44,6 @@ export default function Header() {
       setIsLogin(false);
       setIsSearch(false);
       setIsPost(false);
-      setIsFav(false);
       setIsProfile(false);
     } else if (pathname === '/post') {
       setIsFeed(false);
@@ -55,15 +51,6 @@ export default function Header() {
       setIsLogin(false);
       setIsSearch(false);
       setIsPost(true);
-      setIsFav(false);
-      setIsProfile(false);
-    } else if (pathname === '/favorites') {
-      setIsFeed(false);
-      setIsSignup(false);
-      setIsLogin(false);
-      setIsSearch(false);
-      setIsPost(false);
-      setIsFav(true);
       setIsProfile(false);
     } else if (pathname === '/profile') {
       setIsFeed(false);
@@ -71,7 +58,6 @@ export default function Header() {
       setIsLogin(false);
       setIsSearch(false);
       setIsPost(false);
-      setIsFav(false);
       setIsProfile(true);
     } else {
       setIsFeed(false);
@@ -79,7 +65,6 @@ export default function Header() {
       setIsLogin(false);
       setIsSearch(false);
       setIsPost(false);
-      setIsFav(false);
       setIsProfile(false);
     }
   }, [pathname]);
@@ -133,16 +118,6 @@ export default function Header() {
                 }}
               />
               <img
-                className={`header__icon header__icon--heart ${
-                  isFav ? 'header__icon--active' : ''
-                } ${!isSearch ? 'header__icon--other' : ''}`}
-                src={heartIcon}
-                alt='heart'
-                onClick={() => {
-                  navigate('/favorites');
-                }}
-              />
-              <img
                 className={`header__icon header__icon--profile ${
                   isProfile ? 'header__icon--active' : ''
                 } ${!isSearch ? 'header__icon--other' : ''}`}
@@ -177,17 +152,6 @@ export default function Header() {
                 }}
               >
                 post
-              </button>
-              <button
-                className={`header__button  ${
-                  isFav ? 'header__button--active' : ''
-                } ${!isSearch ? '' : 'header__button--other'}`}
-                type='click'
-                onClick={() => {
-                  navigate('/favorites');
-                }}
-              >
-                favorites
               </button>
               <button
                 className={`header__button  ${

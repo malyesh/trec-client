@@ -4,11 +4,16 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import profileIcon from '../../assets/icons/profile.svg';
 import axios from 'axios';
 import PostModal from '../../components/PostModal/PostModal';
+import gridIcon from '../../assets/icons/grid-3x3 thicker.svg';
+import heartIcon from '../../assets/icons/heart-line-icon.svg';
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState({});
+  const [isPost, setIsPost] = useState(true);
   const [allPosts, setAllPosts] = useState();
+  const [favorites, setFavorites] = useState([]);
+  const [like, setLike] = useState(true);
   const [isImage, setIsImage] = useState(false);
   const [hasDeleted, setHasDeleted] = useState(false);
 
@@ -41,6 +46,18 @@ export default function ProfilePage() {
     };
     getAllPosts();
   }, [apiBody, token, isLoading, hasDeleted]);
+
+  useEffect(() => {
+    const getFavorites = async () => {
+      const posts = await axios.get(`${apiBody}/user/favorites`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFavorites(posts.data);
+    };
+    getFavorites();
+  }, [apiBody, token, like]);
 
   useEffect(() => {
     const checkImage = () => {
@@ -100,19 +117,99 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className='profile__container'>
-        {allPosts.map((post, i) => {
-          return (
-            <div className='profile__post' key={i}>
-              <PostModal
-                post={post}
-                setHasDeleted={setHasDeleted}
-                hasDeleted={hasDeleted}
-              />
-            </div>
-          );
-        })}
+      <div className='profile__toggle'>
+        <div className='profile__toggle--container '>
+          <div
+            className='profile__toggle--item profile__toggle--grid'
+            onClick={() => {
+              setIsPost(true);
+            }}
+          >
+            <img
+              className={`profile__toggle--icon ${
+                isPost ? 'profile__toggle--active' : ''
+              }`}
+              src={gridIcon}
+              alt='grid'
+            />
+            <p
+              className={`profile__toggle--text ${
+                isPost ? 'profile__toggle--active' : ''
+              }`}
+            >
+              posts
+            </p>
+          </div>
+          <div
+            className='profile__toggle--item'
+            onClick={() => {
+              setIsPost(false);
+            }}
+          >
+            <img
+              className={`profile__toggle--icon ${
+                !isPost ? 'profile__toggle--active' : ''
+              }`}
+              src={heartIcon}
+              alt='heart'
+            />
+            <p
+              className={`profile__toggle--text ${
+                !isPost ? 'profile__toggle--active' : ''
+              }`}
+            >
+              favorites
+            </p>
+          </div>
+        </div>
       </div>
+
+      <section>
+        <div className='profile__container'>
+          {isPost &&
+            allPosts.map((post, i) => {
+              return (
+                <div className='profile__post' key={i}>
+                  <PostModal
+                    post={post}
+                    setHasDeleted={setHasDeleted}
+                    hasDeleted={hasDeleted}
+                    setLike={setLike}
+                    like={like}
+                    isPost={true}
+                  />
+                </div>
+              );
+            })}
+        </div>
+
+        <div>
+          {!isPost && (
+            <div className='profile__container'>
+              {favorites.length === 0 ? (
+                <h2 className='profile__empty'>
+                  You haven't favorited anything yet!
+                </h2>
+              ) : (
+                favorites.map((post, i) => {
+                  return (
+                    <div className='profile__post' key={i}>
+                      <PostModal
+                        post={post}
+                        setHasDeleted={setHasDeleted}
+                        hasDeleted={hasDeleted}
+                        setLike={setLike}
+                        like={like}
+                        isPost={false}
+                      />
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
 }

@@ -18,6 +18,7 @@ export default function Post({
   profile,
   setLike,
   like,
+  closeModal,
 }) {
   const [liked, setLiked] = useState(false);
   const [isImage, setIsImage] = useState(false);
@@ -107,6 +108,7 @@ export default function Post({
           });
           setLiked(false);
           setLike(!like);
+          closeModal();
         } catch (error) {
           console.log(error);
         }

@@ -12,9 +12,8 @@
     @include tablet {
       padding: 1rem 2rem;
       flex-direction: row;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       align-items: flex-end;
-      border-bottom: 1px solid lightgrey;
     }
     @include desktop {
       padding: 1rem 0;
@@ -47,7 +46,7 @@
     }
   }
   &__button {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     width: 100%;
     @include tablet {
       margin-bottom: 0;
@@ -71,15 +70,100 @@
       padding: 0 2rem;
       margin-right: auto;
       margin-left: auto;
-      width: 540px;
-      // justify-content: flex-start;
+      width: 538px;
     }
     @include desktop {
       padding: 0;
-      width: 640px;
+      width: 625px;
+    }
+  }
+  &__empty {
+    padding-top: 1rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    @include tablet {
+      padding-top: 0;
     }
   }
   &__post {
     padding: 4px;
+  }
+  &__toggle {
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid lightgrey;
+    @include tablet {
+      margin-right: 2rem;
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+    }
+    @include desktop {
+      @include desktop-container;
+    }
+    &--icon {
+      display: flex;
+      height: 40px;
+      align-items: center;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      cursor: pointer;
+      &:hover {
+        filter: invert(84%) sepia(32%) saturate(3160%) hue-rotate(313deg)
+          brightness(100%) contrast(92%);
+        border-bottom: 2px solid $orange;
+      }
+      @include tablet {
+        display: none;
+      }
+    }
+    &--text {
+      display: none;
+      @include tablet {
+        display: flex;
+        height: 25px;
+        align-items: center;
+        padding: 2rem 0.5rem;
+        cursor: pointer;
+        &:hover {
+          color: $orange;
+          border-bottom: 2px solid $orange;
+        }
+      }
+    }
+    &--container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      @include tablet {
+        width: 476px;
+        justify-content: flex-start;
+      }
+    }
+    &--item {
+      width: 50%;
+      padding: 0 0.5rem;
+      display: flex;
+      justify-content: center;
+      @include tablet {
+        display: flex;
+        padding: 0;
+        justify-content: flex-end;
+      }
+    }
+    &--grid {
+      border-right: 1px solid lightgray;
+      @include tablet {
+        justify-content: flex-start;
+      }
+    }
+    &--active {
+      color: $orange;
+      border-bottom: 2px solid $orange;
+    }
   }
 }
