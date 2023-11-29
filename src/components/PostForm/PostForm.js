@@ -243,7 +243,7 @@ export default function PostForm({ id }) {
           className={`post__button ${disabled ? 'disabled' : ''}`}
           type='submit'
         >
-          Create Post
+          create post
         </button>
       </div>
     </form>

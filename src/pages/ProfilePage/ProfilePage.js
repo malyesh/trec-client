@@ -165,9 +165,9 @@ export default function ProfilePage() {
       </div>
 
       <section>
-        <div className='profile__container'>
-          {isPost &&
-            allPosts.map((post, i) => {
+        {isPost && (
+          <div className='profile__container'>
+            {allPosts.map((post, i) => {
               return (
                 <div className='profile__post' key={i}>
                   <PostModal
@@ -181,7 +181,16 @@ export default function ProfilePage() {
                 </div>
               );
             })}
-        </div>
+            <div
+              className='profile__post profile__post--add'
+              onClick={() => {
+                navigate('/post');
+              }}
+            >
+              +<p className='profile__post--add-tablet'>add a rec</p>
+            </div>
+          </div>
+        )}
 
         <div>
           {!isPost && (

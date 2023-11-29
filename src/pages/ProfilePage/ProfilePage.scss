@@ -88,6 +88,41 @@
   }
   &__post {
     padding: 4px;
+    &:hover {
+      transform: scale(1.02);
+    }
+    &--add {
+      margin: 4px;
+      color: darkgray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 2rem;
+      background-color: rgba(211, 211, 211, 0.5);
+      height: 100px;
+      width: 100px;
+      @include tablet {
+        font-size: 1rem;
+        height: 150px;
+        width: 150px;
+      }
+      @include desktop {
+        height: 200px;
+        width: 200px;
+      }
+      &:hover {
+        transform: scale(1.02);
+      }
+      &-tablet {
+        display: none;
+        @include tablet {
+          display: flex;
+          color: darkgray;
+          padding-left: 4px;
+        }
+      }
+    }
   }
   &__toggle {
     margin: 0 1rem;
