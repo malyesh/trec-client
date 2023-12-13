@@ -65,17 +65,23 @@ password -> password
 
 ## Preview
 
-home page
-![Screenshot 2023-11-26 222449](https://github.com/malyesh/trec-server/assets/74512928/6f054454-1fa2-41d6-8013-b72a67162358)
-see popular posts feed
-![Screenshot 2023-11-26 222506](https://github.com/malyesh/trec-server/assets/74512928/9d3b61e7-c5fe-4802-8c1b-98535d98f3a6)
-search for landmarks in a country and city from the drop down menus
-![Screenshot 2023-11-26 222522](https://github.com/malyesh/trec-server/assets/74512928/757bf01a-4fe9-4f3d-a063-d7f4a688e676)
+home page to search for a country, city, or landmark
+![Screenshot 2023-12-13 120514](https://github.com/malyesh/trec-client/assets/74512928/62f09477-2555-4876-afa8-aaa6a316d448)
+look through landmarks that correspond with your previous search
+![Screenshot 2023-12-13 120945](https://github.com/malyesh/trec-client/assets/74512928/0de0d6de-22fa-48c0-aaf3-1ae08e52d5e1)
 pick a landmark to view it's post feed
-![Screenshot 2023-11-26 222551](https://github.com/malyesh/trec-server/assets/74512928/1e8fb66c-4f35-4fa3-bb7d-7283eb6acffa)
+![Screenshot 2023-12-13 120959](https://github.com/malyesh/trec-client/assets/74512928/abf7b100-7c61-4bf7-a73d-61f2f6a0a886)
+see popular posts feed
+![Screenshot 2023-12-13 120748](https://github.com/malyesh/trec-client/assets/74512928/8ab730a7-9b23-4ee1-aff0-a7aa6f749bb6)
 sign up
-![Screenshot 2023-11-26 222604](https://github.com/malyesh/trec-server/assets/74512928/ef887ad3-0a1a-4452-902d-679f40f3aafd)
+![Screenshot 2023-12-13 120606](https://github.com/malyesh/trec-client/assets/74512928/997d4a95-3b31-4f68-a540-9231352e3ad8)
 log in
-![Screenshot 2023-11-26 222615](https://github.com/malyesh/trec-server/assets/74512928/b8eb2f66-1cef-4c5d-af04-910825983880)
+![Screenshot 2023-12-13 120554](https://github.com/malyesh/trec-client/assets/74512928/ac6afc9e-da96-4161-a5d1-a72efa47cae9)
 create a post
 ![Screenshot 2023-11-26 222716](https://github.com/malyesh/trec-server/assets/74512928/682e3312-0e8c-49f2-a542-dd7a5cb27fb8)
+go to your profile page to check out your own posts
+![Screenshot 2023-12-13 120814](https://github.com/malyesh/trec-client/assets/74512928/101bf01f-bb04-4573-87d5-ff191cd48972)
+click on posts to get all the details about it, and get the option to delete the post
+![Screenshot 2023-12-13 120852](https://github.com/malyesh/trec-client/assets/74512928/31ca2bb3-15ff-455f-9eed-68f3a955b948)
+also view posts that you have favorited 
+![Screenshot 2023-12-13 120825](https://github.com/malyesh/trec-client/assets/74512928/fd1df265-173e-4fe4-8d6f-d32b9eb7f679)
