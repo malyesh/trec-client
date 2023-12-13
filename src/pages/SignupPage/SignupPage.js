@@ -15,6 +15,7 @@ const initialValues = {
 
 export default function SignupPage() {
   const [success, setSuccess] = useState(false);
+  const [unsucess, setUnsuccess] = useState(false);
   const [error, setError] = useState(null);
   const [file, setFile] = useState();
   const [values, setValues] = useState(initialValues);
@@ -30,34 +31,40 @@ export default function SignupPage() {
 
   const handleSignup = async (event) => {
     event.preventDefault();
-    try {
-      if (event.target.password.value === event.target.confirm_password.value) {
-        let userInput = {
-          first_name: values.first_name,
-          last_name: values.last_name,
-          email: values.email,
-          password: values.password,
-          picture: file,
-        };
+    if (disabled) {
+      setUnsuccess(true);
+    } else {
+      try {
+        if (
+          event.target.password.value === event.target.confirm_password.value
+        ) {
+          let userInput = {
+            first_name: values.first_name,
+            last_name: values.last_name,
+            email: values.email,
+            password: values.password,
+            picture: file,
+          };
 
-        await axios.post(`${apiBody}/user/signup`, userInput, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        setSuccess(true);
-        setError('');
-        event.target.reset();
-        window.scrollTo(0, 0);
+          await axios.post(`${apiBody}/user/signup`, userInput, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+          setSuccess(true);
+          setError('');
+          event.target.reset();
+          window.scrollTo(0, 0);
 
-        setTimeout(() => {
-          navigate('/login');
-        }, 2000);
-      } else {
-        setError('Passwords need to match!');
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
+        } else {
+          setError('Passwords need to match!');
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -78,6 +85,7 @@ export default function SignupPage() {
       values.confirm_password !== ''
     ) {
       setDisabled(false);
+      setUnsuccess(true);
     }
   }, [values]);
 
@@ -93,6 +101,11 @@ export default function SignupPage() {
         {success && (
           <div className='signup__message signup__message--success'>
             Sign up successful!
+          </div>
+        )}
+        {unsucess && (
+          <div className='signup__message signup__message--unsuccess'>
+            fill out all fields please!
           </div>
         )}
         <div className='signup__form'>
